@@ -1,0 +1,325 @@
+.landing-top {
+	background: url('../img/landing-bg.jpg') top center no-repeat !important;
+	background-size: cover !important;
+	width: 100%;
+	height: 68%;
+}
+
+.landing-logo-unit {
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+	margin-top: 15%;
+}
+
+.landing-bottom {
+	text-align: center;
+}
+
+.landing-bottom a {
+	display: inline-block;
+	text-align: center;
+}
+
+.landing-bottom a span {
+	display: block;
+	color: #000;
+}
+
+.landing-bottom a img {
+	display: block;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+
+.page-content{
+	border-bottom: .5em solid #bed62f !important;
+}
+
+.menu-panel ul li .item-content,
+.menu-panel ul li .item-inner  {
+	min-height: 40px;
+}
+
+.menu-panel ul li .item-inner i {
+	margin-right: 10px;
+}
+
+.menu-panel ul li .item-title {
+	font-size: 12px;
+}
+
+
+
+.loading-logo {
+	margin-top: 45%;
+	text-align: center;
+}
+
+.la-ball-pulse {
+  color: #444;
+}
+
+.loading-animation {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.login_logo {
+	padding-top: 50px;
+}
+
+.login_page_text {
+	font-size: .8em;
+	padding: 0 10%;
+	text-align: center;
+}
+
+.login-screen {
+
+}
+
+.text-center {
+	text-align: center;
+}
+
+.center-block-80 {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.card-header {
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+}
+
+.card-date {
+	font-size: .6em;
+}
+
+.loading-screen {
+	z-index: 1000000;
+	display: none;
+}
+
+.user_icon {
+	width: 30%;
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+}
+
+.menu-active {
+
+	
+}
+
+
+/******shahnawaz******/
+
+.log{margin-top:0% !important;}
+
+.tab-info{text-align: center !important;margin-bottom: -3%;}
+
+.tabs{
+	display:inline-block;color:#000 !important;
+	padding:0px 10px;
+}
+
+.hr-line
+{
+	background: url('../img/line.png');
+    width: auto !important;
+    height: 1px;
+    margin: 20px 27px 0px 20px !important;	
+}
+
+.info
+{
+
+	text-align: center;
+    background-color: #f7f7f7;
+    margin: 26px 26px 0px 26px;
+}
+
+.info p
+{
+
+    padding: 20px 20px 20px 20px;
+    font-size: 1em;
+    
+}
+
+.about-bottom
+{
+	text-align:center;
+	width:100%;
+}
+.about-bottom span img
+{
+	margin-right:80px;
+	width:30px;
+}
+.about-bottom span p
+{
+	margin-top: -30px;
+    margin-left: 40px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.success
+{
+	text-align: center;
+	width:100%;
+	margin-top:20%;
+}
+.success img
+{
+	width:60px;
+	margin-top:15px;
+}
+
+.msg
+{
+	text-align: center;
+	width:100%;
+	margin-top:14px;
+}
+
+.enquiry-msg
+{
+	text-align: center;
+	width:100%;
+	margin-top:14px;
+}
+.enquiry-msg img
+{
+	width:220px;
+}
+.continue-block
+{
+	text-align: center;
+	width:100%;
+	margin-top:14px;
+}
+.continue-block img
+{
+	width:210px;
+}
+.back-icn
+{
+	position: absolute;
+    left: 70px;
+    top: 274px;
+}
+.back-icn img
+{
+	width:12px;
+}
+.back-icn-msg
+{
+    margin-top: -33px;
+    margin-left: 90px;
+}
+
+.back-icn-msg img
+{
+	width:160px;
+}
+
+.goblock
+{
+   	margin-top: 21px;
+    margin-left: 56px;
+}
+
+.goblock img
+{
+	width:210px;
+}
+
+.goblock-msg
+{
+	margin-top: -32px;
+    margin-left: 100px;
+}
+.goblock-msg img
+{
+	width:120px;
+}
+.thankyou-bottom
+{
+	border-bottom: none !important;
+}
+
+.thankyou-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+
+}
+
+.rounded-btn {
+	width: 70%;
+    border-radius: 30px;
+    display: block;
+    margin: 0 auto;
+    font-size: 12px;
+    text-transform: none;
+}
+
+.login-btn {
+	width: 70%;
+    display: block;
+    margin: 0 auto;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.input-rounded {
+    border-radius: 30px;
+    display: block;
+    margin: 20px auto;
+    font-size: 12px;
+    background: #d1e140;
+    border: none;
+    padding: 10px 15px;
+    width: 90%;
+}
+
+.login-form-wrapper {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+}
+
+
+@media (min-width:480px) and (max-width:720px){
+.landing-logo-unit{
+	width:75%;
+	margin-top:15%;
+}
+.og-details a{
+	margin:13% 6% 0 !important;
+}
+.log{
+	width:55% !important;
+}
+.landing-bottom {
+    text-align: center;
+    margin-top: 9%;
+    font-size: 1.5em;
+}
+.regis-btn{
+	margin-top:17%!important;
+}
+}
+
+
+/******end***********/
+

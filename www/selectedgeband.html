@@ -1,0 +1,54 @@
+ <div class="pages">
+  <!-- Page, data-page contains page name-->
+	<div data-page="colorselector" class="page">
+    	<!-- Scrollable page content-->
+    	<div class="page-content">
+      		
+<style>
+	.colorselector-wrapper {
+		width: 90%;
+		display: block;
+		margin: 20px auto;
+	}
+
+	.color-boxes-wrapper {
+		text-align: center;
+		margin-top: 30px;
+		height: 350px;
+		/*overflow-y: scroll;*/
+	}
+	.selected-color {
+		width: 95%;
+		display: block;
+		margin: 0 auto;
+		height: 40px;
+		border-radius: 2em;
+	}
+
+	.pickr{
+		position: absolute;
+    	bottom: 34%;
+    	right: 22%;
+    	height: 32px;
+	}
+
+</style>
+
+			<div class="colorselector-wrapper">
+
+				<p style="text-align: center;font-size: 1.2em; font-weight:bold;">Selected Color</p>
+				<div class="selected-color" style="background: #b27229;"></div>
+
+				<div class="color-boxes-wrapper">
+					
+					<img src="img/color-image.png" style=" height: 300px;">
+					<img src="img/picker-icon.png" class="pickr">
+
+				</div>
+ 				
+			</div>
+			<a href="#" class="button button-big button-raised" style="width: 100%;color: #fff;background: #1245a3;position: absolute;bottom: 0px;">Proceed to Select Laminate</a>
+
+	  	</div>
+	</div>
+</div>
