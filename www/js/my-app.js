@@ -35,8 +35,8 @@ myApp.onPageInit('talktous', function(page){
     mainView.showNavbar();
     $('#idname').text('Talk to Us');
     $(".callus").click(function(){
-        console.log("success");
-        window.open('tel:+919769102406', '_system');
+        // console.log("success");
+        window.open('tel:+180000888', '_system');
     })
 })
 
@@ -55,10 +55,10 @@ myApp.onPageInit('selectedcolor', function (page) {
      $('#idname').text('Select Color');
     $('.clrSlctrLmnt').click(function(event) {
         var color = $('.selected-color').css('background-color');
-        console.log('color: '+color);
+        // console.log('color: '+color);
         var hexClr = rgbToHex(color);
         hexClr = hexClr.substring(1);
-        console.log('hex color: '+hexClr);
+        // console.log('hex color: '+hexClr);
         Lockr.set('color', hexClr);
         mainView.router.loadPage('matchinglaminate.html');
     });
@@ -70,11 +70,11 @@ myApp.onPageInit('login', function (page) {
     $('#loginForm').attr('action', base_url+'login');
 
     $('#loginForm').ajaxForm(function(data) {
-        console.log(data);
+        // console.log(data);
         // data = JSON.parse(data);
-        console.log(data);
+        // console.log(data);
         user_data = data.user;
-        console.log('login: ' + data);
+        // console.log('login: ' + data);
         if(data.msg.indexOf('SUCCESS')>=0) {
             myApp.alert('successfully logged in', 'Success');
             token = data.token;
@@ -88,13 +88,13 @@ myApp.onPageInit('login', function (page) {
 
     openFB.init('1007458002645274', '', window.localStorage);
     $(".login-btn").click(function(){
-        console.log("FB LOGIN BUTTON Triggered");
+        // console.log("FB LOGIN BUTTON Triggered");
         openFB.login('email',
             function() {
                 get_info();
             },
             function() {
-                console.log('Facebook login failed');
+                // console.log('Facebook login failed');
             }
         );
     })
@@ -128,15 +128,15 @@ myApp.onPageInit('login', function (page) {
                     }
                 })
                 .fail(function(erroe) {
-                    console.log("error: "+error);
+                    // console.log("error: "+error);
                 })
                 .always(function() {
-                    console.log("complete");
+                    // console.log("complete");
                 });
                 console.log('after ajax');
             },
             error: function(response){
-                console.log('Not able to access data');
+                // console.log('Not able to access data');
             }
         });
     }
@@ -196,9 +196,9 @@ myApp.onPageInit('register', function (page) {
     }
 
     $('#registerForm').ajaxForm(function(data) {
-        console.log(data);
+        // console.log(data);
         data = JSON.parse(data);
-        console.log('register: ' + data);
+        // console.log('register: ' + data);
         if (data.msg.indexOf("SUCCESS") >= 0) {
             myApp.alert('Registered successfully.', 'Success');
             token = data.token;
@@ -230,10 +230,10 @@ myApp.onPageInit('forgotpw', function (page) {
             }
         })
         .fail(function(data) {
-            console.log("error: "+JSON.stringify(data));
+            // console.log("error: "+JSON.stringify(data));
         })
         .always(function() {
-            console.log("complete");
+            // console.log("complete");
         });
         
     });
@@ -255,9 +255,9 @@ myApp.onPageInit('offers', function (page) {
             var title = val.offer_title;
             var image = val.image;
             var desc = val.description;
-            console.log('t: ' +  title );
-            console.log('d: ' +  desc );
-            console.log('i: ' + image);
+            // console.log('t: ' +  title );
+            // console.log('d: ' +  desc );
+            // console.log('i: ' + image);
 
             // <div class="faq-item">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form?</div>
                 // <div class="faq-item-data">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
@@ -304,10 +304,10 @@ myApp.onPageInit('offers', function (page) {
             });
     })
     .fail(function() {
-        console.log("error");
+        // console.log("error");
     })
     .always(function() {
-        console.log("complete");
+        // console.log("complete");
     });
 
 });
@@ -392,18 +392,18 @@ myApp.onPageInit('colorselector', function (page) {
 
     })
     .fail(function(msg) {
-        console.log("error: " + msg);
+        // console.log("error: " + msg);
     })
     .always(function() {
-        console.log("complete");
+        // console.log("complete");
     });
 
     $('.clrSlctrLmnt').click(function(event) {
         var color = $('.selected-color').css('background-color');
-        console.log('color: '+color);
+        // console.log('color: '+color);
         var hexClr = rgbToHex(color);
         hexClr = hexClr.substring(1);
-        console.log('hex color: '+hexClr);
+        // console.log('hex color: '+hexClr);
         Lockr.set('color', hexClr);
         mainView.router.loadPage('matchinglaminate.html');
     });
@@ -431,8 +431,8 @@ myApp.onPageInit('faqs', function (page) {
         $.each(data, function(index, val) {
             var title = val.FAQs_title;
             var desc = val.description;
-            console.log('t: ' +  title );
-            console.log('d: ' +  desc );
+            // console.log('t: ' +  title );
+            // console.log('d: ' +  desc );
 
             // <div class="faq-item">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form?</div>
                 // <div class="faq-item-data">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
@@ -460,10 +460,10 @@ myApp.onPageInit('faqs', function (page) {
             });
     })
     .fail(function() {
-        console.log("error");
+        // console.log("error");
     })
     .always(function() {
-        console.log("complete");
+        // console.log("complete");
     });
 
 });
@@ -490,7 +490,7 @@ myApp.onPageInit('feedback', function (page) {
                 crossDomain: true,
                 data: {name: $("#name_feedback").val(),email: $("#email_feedback").val(),msg: $("#messg").val()},
                 success: function(response){
-                    console.log(response);
+                    // console.log(response);
                 }
             })
         }
@@ -512,7 +512,7 @@ myApp.onPageInit('matchinglaminate', function (page) {
     })
     .done(function(data) {
         var obj = JSON.stringify(data);
-        console.log(obj);
+        // console.log(obj);
         $.each(data, function(index, val) {
             var text = '<li style="" class="og-expanded brd '+val.type+'">'+
                         '<a href="" class="open_pop" data-id="'+val.id+'" data-img="'+img_url+val.image+'" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu."> <img src="'+img_url+val.image+'" alt="">'+
@@ -526,15 +526,15 @@ myApp.onPageInit('matchinglaminate', function (page) {
         $('.Laminates').show();
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log("error: "+jqXHR);
+        // console.log("error: "+jqXHR);
     })
     .always(function() {
-        console.log("complete");
+        // console.log("complete");
     });
 
     $('.open_pop').click(function(){
         $('.og-expander').hide();
-        console.log('hii');
+        // console.log('hii');
         $('.open_pop').removeClass('active-box1');
         $('.brd').removeClass('active-box');
         $('.heart_empty').css("visibility" , "hidden");
@@ -591,7 +591,7 @@ myApp.onPageInit('matchinglaminate', function (page) {
 
     $(".getLaminate").click(function(){
         var id = $(this).data("id");
-        console.log(Lockr.get("token"));
+        // console.log(Lockr.get("token"));
         $.ajax({
             url: base_url+"get_laminate",
             type: "POST",
@@ -600,7 +600,7 @@ myApp.onPageInit('matchinglaminate', function (page) {
             success: function(response){
                 // var obj = JSON.parse(response);
                 var obj = response;
-                console.log(obj);
+                // console.log(obj);
                 page_id = obj.page_id;
                 lam_id = obj.laminates_id;
                 lam_img = obj.image;
@@ -622,12 +622,12 @@ myApp.onPageInit('matchinglaminate', function (page) {
         var id = ".popup"+$(this).data("id");
         $(id).show();
         var image = $(this).data("img");
-        console.log("image: "+image)
+        // console.log("image: "+image)
         $('.lmntImg').css('background-image', 'url('+image+')');
     });
 
     $('.og-close').click(function() {
-        console.log('hola');
+        // console.log('hola');
         $('.og-expander').hide();
         $('.open_pop').removeClass('active-box1');
         $('.brd').removeClass('active-box');
@@ -655,14 +655,14 @@ myApp.onPageInit('complementarylaminate', function (page) {
     });
 
     $('.og-close').click(function() {
-        console.log('hola');
+        // console.log('hola');
         $('.og-expander').hide();
         $('.open_pop').removeClass('active-box1');
     }); 
 });
 
 myApp.onPageInit('catalogueselector', function (page) {
-    console.log("catalogueselector");
+    // console.log("catalogueselector");
     mainView.showNavbar();
      $('#idname').text('Catalogue');
 
@@ -692,10 +692,10 @@ myApp.onPageInit('catalogueselector', function (page) {
         // console.log("catalogue: "+data);
     })
     .fail(function() {
-        console.log("error");
+        // console.log("error");
     })
     .always(function() {
-        console.log("complete");
+        // console.log("complete");
     });
     
     $(".savelam").click(function(){
@@ -707,7 +707,7 @@ myApp.onPageInit('catalogueselector', function (page) {
             data: {lid: id, token: token, page_id: "catalogue-selector.html"},
             success: function(response){
                 // greenlam_mirza/www
-                console.log('response: '+response);
+                // console.log('response: '+response);
                 // var obj = JSON.parse(response);
                 var obj = response;
                 page_id = obj.page_id;
@@ -724,7 +724,7 @@ myApp.onPageInit('catalogueselector', function (page) {
 
     $(".getlam").click(function(){
         var id = $(this).data("getid");
-        console.log(Lockr.get("token"));
+        // console.log(Lockr.get("token"));
         $.ajax({
             url: base_url+"get_laminate",
             type: "POST",
@@ -732,7 +732,7 @@ myApp.onPageInit('catalogueselector', function (page) {
             data: {lid: id, token: token, page_id: "quote.html"},
             success: function(response){
                 var obj = response;
-                console.log(obj);
+                // console.log(obj);
                 page_id = obj.page_id;
                 lam_id = obj.laminates_id;
                 lam_img = obj.image;
@@ -749,7 +749,7 @@ myApp.onPageInit('catalogueselector', function (page) {
     })
 
     $(".proceed-to-edgband").click(function(){
-        console.log(user_data);
+        // console.log(user_data);
         if (lam_id) {
             if (user_data) {
                 mainView.router.loadPage('selected-edgeband.html');
@@ -778,7 +778,7 @@ myApp.onPageInit('catalogueselector', function (page) {
     });
 
     $('.og-close').click(function() {
-        console.log('hola');
+        // console.log('hola');
         $('.og-expander').hide();
         $('.open_pop').removeClass('active-box1');
         $('.brd').removeClass('active-box');
@@ -854,7 +854,7 @@ myApp.onPageInit('quote', function(page){
                     token : token,
                 },
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
                     if (data != "SUCCESS") {
                         myApp.alert("We couldn't process your request Please try again in sometime", "ALERT");
                     } else {
@@ -888,11 +888,11 @@ myApp.onPageInit('selected-edgeband', function(page){
         async: false
     })
     .done(function(data) {
-        console.log(data);
+        // console.log(data);
         $.each(data.result, function(index, val) {
 
             var text = '<li style="" class="og-expanded brd"> '+
-                        '<a href="" class="open_pop frst" data-id="'+val.id+'" data-edge="'+val.id+'" data-largesrc="img/catalogue-box2.png" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu."> '+
+                        '<a href="" class="open_pop frst" data-id="'+val.id+'" data-edgeid="'+val.id+'" data-largesrc="img/catalogue-box2.png" data-title="Veggies sunt bona vobis" data-description="Komatsuna prairie turnip wattle seed artichoke mustard horseradish taro rutabaga ricebean carrot black-eyed pea turnip greens beetroot yarrow watercress kombu."> '+
                         '<img src="'+img_url+val.image+'" alt=""> '+
                         '<img src="img/heart-icon.png" class="heart heart_empty">'+
                         '</a> <div class="og-expander popup'+val.id+'" style="transition: height 350ms ease; height: 646px;"> '+
@@ -929,13 +929,15 @@ myApp.onPageInit('selected-edgeband', function(page){
         $(this).parent().addClass('active-box');
         $(this).addClass('active-box1');
         $(this).find('.heart_empty').css("visibility" , "visible");
-        egde_id = $(this).data("id");
+        // egde_id = $(this).data("id");
+        // console.log('edge id:'+edge_id);
         egde_img = $(this).children().attr("src");
     });
 
     $(".open_pop").click(function(){
-        egde_id = $(this).data("id");
-        var id = ".popup"+egde_id;
+        edge_id = $(this).data("id");
+        // console.log('edge id: '+egde_id);
+        var id = ".popup"+edge_id;
         $(id).show();
     })
 
@@ -961,7 +963,7 @@ myApp.onPageInit('selected-edgeband', function(page){
     })
 
     $('.og-close').click(function() {
-        console.log('hola');
+        // console.log('hola');
         $('.og-expander').hide();
         $('.open_pop').removeClass('active-box1');
         $('.brd').removeClass('active-box');
@@ -970,7 +972,7 @@ myApp.onPageInit('selected-edgeband', function(page){
 
     $(".getlam").click(function(){
         var id = $(this).data("getid");
-        console.log(Lockr.get("token"));
+        // console.log(Lockr.get("token"));
         $.ajax({
             url: base_url+"get_laminate",
             type: "POST",
@@ -978,7 +980,7 @@ myApp.onPageInit('selected-edgeband', function(page){
             data: {lid: id, token: token, page_id: "quote.html"},
             success: function(response){
                 var obj = JSON.parse(response);
-                console.log(obj);
+                // console.log(obj);
                 page_id = obj.page_id;
                 edge_id = obj.laminates_id;
                 edge_img = obj.image;
@@ -1006,6 +1008,7 @@ myApp.onPageInit('selected-edgeband', function(page){
     });
 
     $(".edgelaminate").click(function(){
+        // console.log('edge id: '+edge_id);
         if (edge_id) {
             mainView.router.loadPage('quote.html');
         } else {
@@ -1025,7 +1028,7 @@ myApp.onPageInit('myselections', function(page){
         async: false,
     })
     .done(function(response){
-        console.log(response);
+        // console.log(response);
         if (response.msg == "LOGIN") {
             // page_id = response.page_id;
             // myApp.confirm(
@@ -1056,10 +1059,10 @@ myApp.onPageInit('myselections', function(page){
         }
     })
     .fail(function(){
-        console.log("error");
+        // console.log("error");
     })
     .always(function(){
-        console.log("complete");
+        // console.log("complete");
     })
 });
 
@@ -1067,7 +1070,7 @@ myApp.onPageInit('myselections', function(page){
 myApp.onPageInit('saved', function(page){
     mainView.showNavbar();
      $('#idname').text('Saved');
-    console.log('token: '+token);
+    // console.log('token: '+token);
     $.ajax({
         url: base_url+'saved_laminates',
         type: 'POST',
@@ -1107,7 +1110,7 @@ myApp.onPageInit('saved', function(page){
         }
     })
     .fail(function(data) {
-         console.log('fail: '+JSON.stringify(data));
+         // console.log('fail: '+JSON.stringify(data));
     });
 
     
