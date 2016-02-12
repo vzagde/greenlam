@@ -12,6 +12,9 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.kreaserv.greenlam"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.kreaserv.greenlam"
         }
     },
     "dependent_plugins": {}

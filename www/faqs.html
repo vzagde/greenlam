@@ -1,38 +1,64 @@
 <div class="pages">
-  <!-- Page, data-page contains page name-->
-	<div data-page="faqs" class="page">
-    	<!-- Scrollable page content-->
-    	<div class="page-content">
-      		
-<style>
-	.faqs-wrapper {
-		width: 90%;
-		display: block;
-		margin: 20px auto;
-	}
+    <!-- Page, data-page contains page name-->
+    <div data-page="faqs" class="page">
+        <!-- Scrollable page content-->
+        <div class="page-content">
 
-	.faq-item, .faq-item-data {
-		background-color: #f5f4f4;
-		font-size: 1em;
-		padding: 10px;
-		border-bottom: 2px solid #bed62f;
-	}
+            <style>
+                .faqs-wrapper {
+                    width: 90%;
+                    display: block;
+                    margin: 20px auto;
+                }
+                
+                .faq-item,
+                .faq-item-data {
+                    background-color: #f5f4f4;
+                    font-size: 1em;
+                    padding: 10px;
+                    border-bottom: 2px solid #bed62f;
+                }
+                
+                .faq-item-data {
+                    display: none;
+                    font-size: .8em;
+                    border-bottom: none;
+                    padding-bottom: 20px;
+                    border-bottom: 5px solid white;
+                }
+                
+                .loader {
+                    position: absolute;
+                    top: 40%;
+                    left: 40%;
+                    z-index: 9999;
+                    display: none;
+                }
+                
+                .loader-bg {
+                    background-color: rgba(0, 0, 0, 0.8);
+                    width: 100%;
+                    height: 100%;
+                    position: fixed;
+                    z-index: 9999;
+                    display: none;
+                }
+                
+                .preloader {
+                    background-image: url('../img/loader.png') !important;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    display: none;
+                }
+            </style>
+            <div class="loader-bg"></div>
+            <div class="loader"><span class="preloader"></span></div>
 
-	.faq-item-data {
-		display: none;
-		font-size: .8em;
-		border-bottom: none;
-		padding-bottom: 20px;
-		border-bottom: 5px solid white;
-	}
+            <div class="faqs-wrapper">
 
-</style>
-
-			<div class="faqs-wrapper">
-
-			</div>
+            </div>
 
 
-	  	</div>
-	</div>
+        </div>
+    </div>
 </div>

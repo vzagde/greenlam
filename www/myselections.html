@@ -1,59 +1,166 @@
- <div class="pages">
-  <!-- Page, data-page contains page name-->
-	<div data-page="myselections" class="page">
-    	<!-- Scrollable page content-->
-    	<div class="page-content">
-      		
-<style>
-	.myselections-wrapper {
-		width: 90%;
-		display: block;
-		margin: 20px auto;
-	}
+<div class="pages">
+    <!-- Page, data-page contains page name-->
+    <div data-page="myselections" class="page">
+        <!-- Scrollable page content-->
+        <div class="page-content">
 
-	.sel-block {
-		background-color: #f5f4f4;
-		border-top-left-radius: 2em;
-		border-top-right-radius: 2em;
-		font-size: 1em;
-		border: 1px solid #EAE6E9;
-		border-bottom: 1px solid #bed62f;
-		padding-top: 5px;
-		margin: 20px 0px;
-	}
+            <style>
+                .myselections-wrapper {
+                    width: 90%;
+                    display: block;
+                    margin: 20px auto;
+                }
+                
+                .sel-block {
+                    background-color: #f5f4f4;
+                    border-top-left-radius: 2em;
+                    border-top-right-radius: 2em;
+                    font-size: 1em;
+                    border: 1px solid #EAE6E9;
+                    border-bottom: 1px solid #bed62f;
+                    padding-top: 5px;
+                    margin: 20px 0px;
+                }
 
-	.sel-color {
-		width: 95%;
-		display: block;
-		margin: 0 auto;
-		height: 40px;
-		border-radius: 2em;
-	}
+                  .cros-btn{
+                    position:absolute !important;
+                    right:10% !important;
+                    height:22px !important;
+                }
 
-	.sel-title {
-		font-size: 1.2em;
-		font-weight: bold;
-		margin: 10px 20px;
-	}
+                
+                .loader {
+                    position: absolute;
+                    top: 40%;
+                    left: 40%;
+                    z-index: 9999;
+                    display: none;
+                }
+                
+                .loader-bg {
+                    background-color: rgba(0, 0, 0, 0.8);
+                    width: 100%;
+                    height: 100%;
+                    position: fixed;
+                    z-index: 9999;
+                    display: none;
+                }
+                
+                .preloader {
+                    background-image: url('../img/loader.png') !important;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    display: none;
+                }
+                
+                .sel-color {
+                    width: 95%;
+                    display: block;
+                    margin: 0 auto;
+                    height: 40px;
+                    border-radius: 2em;
+                }
+                
+                .sel-title {
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    margin: 10px 20px;
+                }
+                
+                .sel-desc {
+                    font-size: .8em;
+                    margin: 10px 20px;
+                }
+                
+                .sel-actions {
+                    margin: 10px 20px;
+                }
+                
+                .sel-actions a {
+                    color: #000;
+                    text-decoration: none;
+                }
+                
+                .share-popup {
+                    background-color: #ffffff;
+                    text-align: center;
+                    margin-top: 30px;
+                    display: none;
+                    border-bottom: 6px solid #cbdb3c;
+                    position: fixed;
+                    z-index: 99999 !important;
+                    left: 23px;
+                    width: 85%;
+                    height: 500px;
+                }
+                
+                .popup-title {
+                    text-align: left;
+                    border-bottom: 2px solid #98ce18;
+                    margin-top: 20px;
+                    padding-bottom: 10px;
+                }
+                
+                .popup-content {
+                    margin-top: 50px;
+                    text-align: center;
+                }
+                
+                .popup-content img {
+                    height: 40px;
+                }
+                
+                .popup-title img {
+                    height: 14px;
+                    margin-left: 20px;
+                }
+                
+                .overlay-popup {
+                    background-color: #888888;
+                    height: 100%;
+                    width: 100%;
+                    position: fixed;
+                    opacity: 0.4;
+                    display: none;
+                }
+            </style>
 
-	.sel-desc {
-		font-size: .8em;
-		margin: 10px 20px;
-	}
 
-	.sel-actions {
-		margin: 10px 20px;
-	}
 
-	.sel-actions a {
-		color: #000;
-		text-decoration: none;
+            <div class="overlay-popup"></div>
+            <div class="share-popup">
+                <img src="img/cross.png" class="cros-btn">
+                <div class="popup-title">
+                    <img src="img/sharevia-icon.png">
+                </div>
+                <center>
+                    <div class="popup-content">
+                        <a href="">
+                            <img src="img/gmail-icon.png">
+                            <p>Gmail</p>
+                        </a>
+<!--                         <a href="">
+                            <img src="img/facebook-icon.png">
+                            <p>Facebook</p>
+                        </a> -->
+                        <a href="">
+                            <img src="img/whatsaap-icon.png">
+                            <p>Whatsapp</p>
+                        </a>
+                        <a href="">
+                            <img src="img/message-icon.png">
+                            <p>Message</p>
+                        </a>
+                    </div>
+                </center>
 
-	}
+            </div>
+            <div class="loader-bg"></div>
+            <div class="loader"><span class="preloader"></span></div>
 
-</style>
-		<div id="myselections" class="myselections-wrapper">
-		</div>
-	  	</div>
-	</div>
+            <div id="myselections" class="myselections-wrapper">
+
+            </div>
+        </div>
+    </div>
 </div>

@@ -118,6 +118,28 @@
    	display: none;
    }
 
+      .loader{
+      position: absolute;
+      top: 40%;
+      left: 40%;
+      z-index: 9999;
+      display:none;
+      }
+      .loader-bg{
+        background-color:rgba(0,0,0,0.8);
+        width:100%;
+        height:100%;
+        position:fixed;
+        z-index:9999;
+        display:none;
+      }
+      .preloader{
+        background-image: url('../img/loader.png') !important;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display:none;
+      }
+
 
 
 </style>
@@ -140,6 +162,9 @@
 				</center>
 					
 			</div>
+
+			 <div class="loader-bg"></div>
+  <div class="loader"><span class="preloader"></span></div>
 
 			<div class="offers-wrapper">
 

@@ -1,25 +1,52 @@
-
 <div class="pages">
-  <!-- Page, data-page contains page name-->
-  <div data-page="login" class="page">
-    <!-- Scrollable page content-->
-    <div class="page-content">
-      
-      <div class="spacer" style="width: 100%; height:15%;"></div>
-    
-      <a href="#" class="fb_login"><img src="img/login-with-facebook.png" class="login-btn"></a>
-      <br>
-      <a href="register.html" class="button rounded-btn button-raised ripple-green" style="background:#e0e0e0; color:#000;">Don’t have an account? Sign up now!</a>
-      <div style="width: 80%; height: 12px; border-bottom: 1px solid black; text-align: center; margin:40px auto;">
-        <span style="font-size: 18px; background-color: #fff; padding: 0 10px;">
+    <!-- Page, data-page contains page name-->
+    <div data-page="login" class="page">
+        <!-- Scrollable page content-->
+        <div class="page-content">
+
+            <style>
+                .loader {
+                    position: absolute;
+                    top: 40%;
+                    left: 40%;
+                    z-index: 9999;
+                    display: none;
+                }
+                
+                .loader-bg {
+                    background-color: rgba(0, 0, 0, 0.8);
+                    width: 100%;
+                    height: 100%;
+                    position: fixed;
+                    z-index: 9999;
+                    display: none;
+                }
+                
+                .preloader {
+                    background-image: url('../img/loader.png') !important;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    display: none;
+                }
+            </style>
+            <div class="loader-bg"></div>
+            <div class="loader"><span class="preloader"></span></div>
+
+            <div class="spacer" style="width: 100%; height:15%;"></div>
+
+            <a href="#" class="fb_login"><img src="img/login-with-facebook.png" class="login-btn"></a>
+            <br>
+            <a href="register.html" class="button rounded-btn button-raised ripple-green" style="background:#e0e0e0; color:#000;">Don’t have an account? Sign up now!</a>
+            <div style="width: 80%; height: 12px; border-bottom: 1px solid black; text-align: center; margin:40px auto;">
+                <span style="font-size: 18px; background-color: #fff; padding: 0 10px;">
           OR
         </span>
-      </div>
-      <div class="login-form-wrapper">
-        <form id="loginForm" method="POST">
-          <input type="email" name="identity" required class="input-rounded " placeholder="Email">
-          <input type="password" name="password" required class="input-rounded " placeholder="Password">
-          <button type="submit" class="button button-raised" style="background:#1245a3; color:#fff; width: 30%; float: right;">Login</a>
+            </div>
+            <div class="login-form-wrapper">
+                <form id="loginForm" method="POST">
+                    <input type="email" name="identity" required class="input-rounded " placeholder="Email">
+                    <input type="password" name="password" required class="input-rounded " placeholder="Password">
+                    <button type="submit" class="button button-raised" style="background:#1245a3; color:#fff; width: 30%; float: right;">Login</a>
         </form>
       </div>
   </div>

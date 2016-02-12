@@ -34,7 +34,22 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        console.log(navigator.camera);
+        var pushNotification;
+        $("#app-status-ul").append('<li>deviceready event received</li>');
+        try {
+            pushNotification = window.plugins.pushNotification;
+            $("#app-status-ul").append('<li>registering ' + device.platform + '</li>');
+            if (device.platform == 'android' || device.platform == 'Android' || device.platform == 'amazon-fireos' ) {
+                console.log("Notification Debugging: Entered Android APP");
+                pushNotification.register(successHandler, errorHandler, {"senderID":"223767762284","ecb":"onNotification"});
+            } else {
+                pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});    // required!
+            }
+        } catch(err) { 
+            txt="There was an error on this page.\n\n"; 
+            txt+="Error description: " + err.message + "\n\n"; 
+            alert(txt);
+        }
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -60,7 +75,6 @@ function getImage () {
 }
 
 function onSuccess(imageData) {
-    console.log('in onsuccess');
     // mainView.router.loadPage('selectedcolor.html');
     var image = $('#cameraImg');
     // console.log('img: ' + imageData);
@@ -91,8 +105,6 @@ function onSuccess(imageData) {
         // rgba(0,255,0,0.3)
         var clr =  'rgba(' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] + ',' + pixelData[3]/255 + ')' ;
         // alert(clr);
-        console.log(event.offsetX);
-        console.log(event.offsetY);
         $(".pickr").css("left", event.offsetX);
         $(".pickr").css("top", event.offsetY+180);
         $('.selected-color').css("background-color", clr );
@@ -109,7 +121,99 @@ function onFail(message) {
     alert('Failed because: ' + message);
 }
 
-openFB.init('1474734099449266', '', window.localStorage);
+
+            function onNotificationAPN(e) {
+                if (e.alert) {
+                     $("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
+                     // showing an alert also requires the org.apache.cordova.dialogs plugin
+                     navigator.notification.alert(e.alert);
+                }
+                    
+                if (e.sound) {
+                    // playing a sound also requires the org.apache.cordova.media plugin
+                    var snd = new Media(e.sound);
+                    snd.play();
+                }
+                
+                if (e.badge) {
+                    pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
+                }
+            }
+            
+            // handle GCM notifications for Android
+            function onNotification(e) {
+                console.log("Notification Debugging: "+e);
+                $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+                
+                switch( e.event )
+                {
+                    case 'registered':
+                    if ( e.regid.length > 0 ) {
+                        $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+                        // Your GCM push server needs to know the regID before it can push to this device
+                        // here is where you might want to send it the regID for later use.
+                        console.log("regID = " + e.regid);
+                    }
+                    break;
+                    
+                    case 'message':
+                        // if this flag is set, this notification happened while we were in the foreground.
+                        // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+                        if (e.foreground)
+                        {
+                            $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+                              
+                                // on Android soundname is outside the payload. 
+                                    // On Amazon FireOS all custom attributes are contained within payload
+                                    var soundfile = e.soundname || e.payload.sound;
+                                    // if the notification contains a soundname, play it.
+                                    // playing a sound also requires the org.apache.cordova.media plugin
+                                    var my_media = new Media("/android_asset/www/"+ soundfile);
+
+                            my_media.play();
+                        }
+                        else
+                        {   // otherwise we were launched because the user touched a notification in the notification tray.
+                            if (e.coldstart)
+                                $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+                            else
+                            $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+                        }
+                            
+                        $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+                        //android only
+                        $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+                        //amazon-fireos only
+                        $("#app-status-ul").append('<li>MESSAGE -> TIMESTAMP: ' + e.payload.timeStamp + '</li>');
+                    break;
+                    
+                    case 'error':
+                        $("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+                    break;
+                    
+                    default:
+                        $("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+                    break;
+                }
+            }
+            
+            function tokenHandler (result) {
+                console.log("Notification Debugging: Entered tokenHandler");
+                $("#app-status-ul").append('<li>token: '+ result +'</li>');
+                // Your iOS push server needs to know the token before it can push to this device
+                // here is where you might want to send it the token for later use.
+            }
+            
+            function successHandler (result) {
+                console.log("Notification Debugging: Entered successHandler");
+                $("#app-status-ul").append('<li>success:'+ result +'</li>');
+            }
+            
+            function errorHandler (error) {
+                console.log("Notification Debugging: Entered errorHandler"+error);
+                $("#app-status-ul").append('<li>error:'+ error +'</li>');
+            }
+// openFB.init('1474734099449266', '', window.localStorage);
 
 $(function() {
     $('#cameraImg').click(function(e) {
@@ -126,24 +230,4 @@ $(function() {
     });
 });
 
-    // $(".fb_login").click(function(){
-    //     fb_login();
-    // });
-
-    // function fb_login(){
-
-    // }
-
-    // function get_info(){
-    //     openFB.api({
-    //         path: '/me',
-    //         success: function(data){
-    //             // $('#login, #homescreen').hide();
-    //             console.log(data);
-    //         },
-    //         error: function(response){
-    //             alert('Not able to access data');
-    //         }
-    //     });
-    // }    
 
