@@ -42,6 +42,7 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
@@ -77,6 +78,8 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <access origin="*" />
+    <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
+    <preference name="android-build-tool" value="gradle" />
     <feature name="com.phonegap.plugins.facebookconnect" version="0.4.0">
         <param name="APP_ID" value="1007458002645274" />
         <param name="APP_NAME" value="greenlamkreaserv" />
