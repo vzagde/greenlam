@@ -127,6 +127,7 @@
                 
                 .content-block {
                     padding: 0px!important;
+                    margin:0px 0px !important;
                 }
                 
                 .loader {
@@ -164,7 +165,7 @@
 					    width: 92%;
 					    height: auto;
 					    right: 0;
-					    margin: 15% auto;
+					    margin: 0% auto;
                 }
                 
                 .popup-title {
@@ -175,7 +176,7 @@
                 }
                 
                 .popup-content {
-                    margin-top: 50px;
+                    margin-top: 14px;
                     text-align: center;
                 }
                 
@@ -208,19 +209,19 @@
                 </div>
                 <center>
                     <div class="popup-content">
-                        <a href="">
+                        <a style="display:block;" onclick="window.open('mailto:?&body=hello%20world..!', '_system')"   href="">
                             <img src="img/gmail-icon.png">
                             <p>Gmail</p>
                         </a>
-<!--                         <a href="">
+                        <a style="display:block;" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system');" href="">
                             <img src="img/facebook-icon.png">
                             <p>Facebook</p>
-                        </a> -->
-                        <a href="">
+                        </a>
+                        <a style="display:block;" onclick="window.open('whatsapp://send?text=Hello%20World!', '_system')" href="">
                             <img src="img/whatsaap-icon.png">
                             <p>Whatsapp</p>
                         </a>
-                        <a href="">
+                        <a style="display:block;" onclick="window.open('sms:?body=Hello my friend', '_system')"  href="">
                             <img src="img/message-icon.png">
                             <p>Message</p>
                         </a>

@@ -103,23 +103,28 @@
                 <br>
                 <div class="selected-color edge_url" style=""></div>
 
-                <div class="color-boxes-wrapper">
+                <div class="color-boxes-wrapper frm" style="overflow-y: scroll">
                     <p id="lamcontent">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <!-- <form class="frm" id="quoteRegister"> -->
                     <hr/>
                     <input type="checkbox" name="ch1" id="ch1" value="Get Quote" style="margin-top: 6%;display:inline-block;">Get Quote
                     <input type="checkbox" name="ch2" id="ch2" value="Get Samples" style="margin-top: 6%;display:inline-block;">Get Samples
                     <hr/>
                     <input type="text" name="name" id="name" class="textbx" placeholder="Name">
-                    <input type="text" name="city" id="city" class="textbx" placeholder="City">
-                    <input type="text" name="state" id="state" class="textbx" placeholder="State">
+<!--                     <input type="text" name="state" id="state" class="textbx" placeholder="State"> -->
+                    <select class="textbx" name="state" required id="state" style="width:85% !important;">
+                      <option value='SELECT'>SELECT STATE</option>
+                    </select>
+                    <select class="textbx" name="city" required id="city" style="width:85% !important;">
+                        <option value='SELECT'>SELECT CITY</option>
+                    </select>
+                    <!-- <input type="text" name="city" id="city" class="textbx" placeholder="City"> -->
                     <input type="text" name="pincode" id="pincode" class="textbx" placeholder="Pincode">
-                    <input type="text" name="contact" id="contact" class="textbx" placeholder="Contact No.">
+                    <input type="number" maxlength="10" name="contact" id="contact" class="textbx" placeholder="Contact No.">
                     <input type="email" name="email" id="email" class="textbx" placeholder="Email">
                     <p style="text-align: center !important;">I would prefer to be contacted via </p>
                     <input type="radio" name="r1" id="r1" value="phone" style="display:inline-block;">Phone
                     <input type="radio" name="r2" id="r2" value="email" style="display:inline-block;margin-bottom:10%;">Email
-                    <button type="SUBMIT" class="button button-big button-raised submit_all_data" style="width: 100%;color: #fff;background: #1245a3;position:absolute;left: 0%;">Done</button>
+                   
 
                     <input type="hidden" name="lid" id="lid" value="">
                     <input type="hidden" name="eid" id="eid" value="">
@@ -127,6 +132,7 @@
                     <!-- </form> -->
 
                 </div>
+                 <button type="SUBMIT" class="button button-big button-raised submit_all_data" style="width: 100%;color: #fff;background: #1245a3;position:absolute;left: 0%;">Done</button>
 
             </div>
 

@@ -74,7 +74,7 @@
                         width: 92%;
                         height: auto;
                         right: 0;
-                        margin: 15% auto;
+                        margin: 0% auto !important;
                 }                
                 .popup-title {
                     text-align: left;
@@ -84,7 +84,7 @@
                 }
                 
                 .popup-content {
-                    margin-top: 50px;
+                    margin-top: 14px;
                     text-align: center;
                 }
                 
@@ -124,7 +124,7 @@
                     left: 0;
                     right: 0;
                     padding-bottom: 4%;
-                    margin: 40% auto 0 auto;
+                    margin: -12% auto 0 auto;
                     width: 90%;
                     height: auto !important;
                     z-index: 11000;
@@ -279,19 +279,19 @@
                 </div>
                 <center>
                     <div class="popup-content">
-                        <a href="">
+                        <a style="display:block;" onclick="window.open('mailto:?&body=hello%20world..!', '_system')"   href="">
                             <img src="img/gmail-icon.png">
                             <p>Gmail</p>
                         </a>
-<!--                         <a href="">
+                        <a style="display:block;" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system');" href="">
                             <img src="img/facebook-icon.png">
                             <p>Facebook</p>
-                        </a> -->
-                        <a href="">
+                        </a>
+                        <a style="display:block;" onclick="window.open('whatsapp://send?text=Hello%20World!', '_system')" href="">
                             <img src="img/whatsaap-icon.png">
                             <p>Whatsapp</p>
                         </a>
-                        <a href="">
+                        <a style="display:block;" onclick="window.open('sms:?body=Hello my friend', '_system')"  href="">
                             <img src="img/message-icon.png">
                             <p>Message</p>
                         </a>
@@ -302,7 +302,7 @@
             <div class="colorselector-wrapper">
                 <p style="text-align: center;font-size: 1.2em; font-weight:bold;">Selected Laminate</p>
                 <div class="selected-color laminateImage" style="background-color:#58320b;">
-                    <img src="img/picker-icon.png" class="pickr">
+                    <img src="img/picker-icon.png" class="edgeband-pickr pickr">
                 </div>
                 <div class="content-block">
                     <div class="main-container">

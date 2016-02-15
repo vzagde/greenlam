@@ -3,6 +3,26 @@
 var base_url = "http://casaestilo.in/greenlam_admin/index.php/json/";
 var img_url = "http://casaestilo.in/greenlam_admin/assets/uploads/files/";
 
+var token_pass = "";
+token_pass = Lockr.get('user_token');
+console.log(token_pass);
+if (token_pass != '') {
+    console.log(token_pass);
+    $.ajax({
+        url: base_url+'chk_logged_in',
+        dataType : 'JSON',
+        crossDomain: true,
+        type: 'POST',
+        data: {token: token_pass},
+        success: function(response){
+            var obj = response;
+            user_data = obj.user;
+            token = obj.token;
+            console.log(response);
+        }
+    })
+}
+
 var page_id = 'index.html';
 var lam_id = '';
 var lam_img = '';
@@ -15,6 +35,7 @@ var edge_img = '';
 var user_data = '';
 var token = 'nothing';
 var prevPage = 'index.html';
+var page_name_for_pickr = '';
 
 var myApp = new Framework7({
     material: true,
@@ -34,6 +55,17 @@ var mainView = myApp.addView('.view-main');
 // Index Page
 myApp.onPageInit('index', function(page){
     mainView.hideNavbar();
+
+    $.ajax({
+        url: base_url+'chk_logged_in',
+        dataType : 'JSON',
+        crossDomain: true,
+        type: 'POST',
+        success: function(response){
+            console.log(response);
+        }
+    })
+
     document.addEventListener(
         "backbutton", 
         function () {
@@ -46,11 +78,13 @@ myApp.onPageInit('index', function(page){
         }, 
         false
     );
+
     function onConfirmQuit(button){
        if(button == "1"){
          navigator.app.exitApp(); 
        }
     }
+
     console.log('index init');
 })
 
@@ -107,6 +141,7 @@ myApp.onPageInit('colorselector', function (page) {
 myApp.onPageInit('matchinglaminate2', function(page){
     mainView.showNavbar();
     $('#idname').text('Select Laminate');
+    $(".item-container").css("width", "auto !important");
     document.addEventListener("backbutton", function () {
          mainView.router.loadPage('colorselector.html');
     }, false);
@@ -125,7 +160,7 @@ myApp.onPageInit('matchinglaminate2', function(page){
     .done(function(data) {
         var obj = JSON.stringify(data);
         $.each(data, function(index, val) {
-            var text = '<div class="item-container brd '+val.type+'" data-title="'+val.name+'" data-description="'+val.description+'" data-image="'+img_url+val.image+'" data-id="'+val.id+'">'+
+            var text = '<div class="item-container brd '+val.type+'" data-title="'+val.name+'" data-description="'+val.description+'" data-image="'+img_url+val.image+'" data-id="'+val.id+'" style="width : auto">'+
                         '<img src="'+img_url+val.image+'" alt="">'+
                         '</div>';
             $('#machinglaminatelist').append(text);
@@ -168,11 +203,6 @@ myApp.onPageInit('matchinglaminate2', function(page){
         $(type_id).show();
     })
 
-    $('.close-popup').click(function(){
-        $('.popup-about').fadeOut('slow');
-        $('.item-container img').removeClass('active-box');
-    });
-
     $('.btn').click(function(){
         $(this).css('display','block');
     });
@@ -183,7 +213,7 @@ myApp.onPageInit('matchinglaminate2', function(page){
         lam_title = $(this).data("title");
         lam_content = $(this).data("description");
         lam_id = $(this).data("id");
-        var html = '<img src="img/cross.png" class="close-popup cross-btn">'+
+        var html = '<img src="img/cross.png" class="cross-btn">'+
                     '<h1 class="item-title">'+lam_title+'</h1>'+
                     '<img src="'+lam_img+'" class="item-expanded-img" alt="">'+
                     '<p class="item-desc">'+lam_content+'</p>'+
@@ -193,6 +223,12 @@ myApp.onPageInit('matchinglaminate2', function(page){
                     '<a class="getLaminate share-link" data-id="'+lam_id+'" href="#"><span class="fa fa fa-check-circle-o"></span> Get this</a>'+
                     '</div>';
         $("#matchinglamabout").html(html);
+
+        $('.cross-btn').click(function(){
+            $('.popup-about').fadeOut('fast');
+            // $('.item-container img').removeClass('active-box');
+        });
+
         $('.shareBtn').click(function(event) {
             console.log('share');
             $('.overlay-popup').fadeIn('slow');
@@ -234,7 +270,7 @@ myApp.onPageInit('matchinglaminate2', function(page){
                     lam_img = obj.image;
                     lam_content = obj.content;
                     lam_title = obj.title;
-                    if (obj.msg == "LOGIN") {
+                    if (token == "nothing") {
                         mainView.router.loadPage('login.html');
                     } else {
                         user_data = obj.userdata;
@@ -245,15 +281,10 @@ myApp.onPageInit('matchinglaminate2', function(page){
         })
     })
 
-   
     $('.cros-btn').click(function(){
         $('.overlay-popup').fadeOut('fast');
         $('.share-popup').fadeOut('fast');
     });
-
-    
-
-    
 
     $(".matching_laminate").click(function(){
         if (lam_id) {
@@ -277,7 +308,7 @@ myApp.onPageInit('selected-edgeband2', function(page){
         type: 'POST',
         dataType: 'JSON',
         crossDomain: true,
-        data: {lid: lam_id, token: token, page_id: 'selected_edgeband.html'},
+        data: {lid: lam_id, token: token, page_id: 'selected_edgeband2.html'},
         async: false
     })
     .done(function(data) {
@@ -290,10 +321,13 @@ myApp.onPageInit('selected-edgeband2', function(page){
         console.log(data);
         lam_img = data.laminate.image;
         lam_content = data.laminate.description;
-        // lam_title = data.laminate.title;
+        // lam_title = data.laminate.title;[]
         console.log(lam_title);
         user_data = data.userdata;
         $('.selected-color').css('background-image', 'url("'+img_url+lam_img+'")');
+        $(".edgeband-pickr").click(function(){
+            mainView.router.loadPage('matchinglaminate2.html');
+        })
     });
 
     $('.item-container img').on('click', function () {
@@ -304,18 +338,13 @@ myApp.onPageInit('selected-edgeband2', function(page){
         $('.modal-overlay-visible').css('opacity','0');
     });
 
-    $('.close-popup').click(function(){
-        $('.popup-about').fadeOut('slow');
-        $('.item-container img').removeClass('active-laminate');
-    });
-
     $(".item-container").click(function(){
         $("#selectedgebandabout").empty();
         edge_img = $(this).data("image");
         edge_title = $(this).data("title");
         edge_content = $(this).data("description");
         edge_id = $(this).data("id");
-        var html = '<img src="img/cross.png" class="close-popup cross-btn">'+
+        var html = '<img src="img/cross.png" class="cross-btn">'+
                     '<h1 class="item-title">'+edge_title+'</h1>'+
                     '<img src="'+edge_img+'" class="item-expanded-img" alt="">'+
                     '<p class="item-desc">'+edge_content+'</p>'+
@@ -325,6 +354,12 @@ myApp.onPageInit('selected-edgeband2', function(page){
                     '<a class="getLaminate share-link" data-id="'+edge_id+'" href="#"><span class="fa fa fa-check-circle-o"></span> Get this</a>'+
                     '</div>';
         $("#selectedgebandabout").html(html);
+
+        $('.cross-btn').click(function(){
+            $('.popup-about').fadeOut('fast');
+            // $('.item-container img').removeClass('active-laminate');
+        });
+
         $('.shareBtn').click(function(event) {
             console.log('share');
             $('.overlay-popup').fadeIn('slow');
@@ -343,7 +378,7 @@ myApp.onPageInit('selected-edgeband2', function(page){
             url: base_url+"save_laminate",
             type: "POST",
             crossDomain: true,
-            data: {lid: id, token: token, page_id: "catalogue-selector.html"},
+            data: {lid: id, token: token, page_id: "catalogue-selector2.html"},
             success: function(response){
                 var obj = JSON.parse(response);
                 page_id = obj.page_id;
@@ -399,6 +434,44 @@ myApp.onPageInit('quote', function(page){
     var quote_type = '';
     var contact_via = '';
 
+    $.ajax({
+        url: base_url+'get_state',
+        type: "POST",
+        crossDomain: true,
+        dataType: 'JSON',
+        success: function(response){
+            $("#state").empty();
+            console.log(response);
+            var text = "<option value='SELECT'>SELECT STATE</option>"
+            $("#state").append(text);
+            $.each(response, function(index, value){
+                var text = "<option value='"+value.id+"'>"+value.state+"</option>";
+                $("#state").append(text);
+            })
+        }
+    })
+
+    $("#state").change(function(){
+        console.log($(this).val());
+        $.ajax({
+            url: base_url+'get_city',
+            type: "POST",
+            crossDomain: true,
+            dataType: 'JSON',
+            data: {id : $(this).val()},
+            success: function(response){
+                $("#city").empty();
+                console.log(response);
+                var text = "<option value='SELECT'>SELECT CITY</option>"
+                $("#city").append(text);
+                $.each(response, function(index, value){
+                    var text = "<option value='"+value.id+"'>"+value.city+"</option>";
+                    $("#city").append(text);
+                })
+            }
+        })        
+    })
+
     $("#ch1").click(function(){
         if(this.checked){
             quote_type = this.value;
@@ -446,46 +519,63 @@ myApp.onPageInit('quote', function(page){
         $(".edge_url").css("background-image", "url('"+edge_img+"')");
     }
     console.log(lam_title);
+
     $("#lamtitle").html(lam_title);
     $("#lamcontent").html(lam_content);
     $("#name").val(user_data.first_name);
-    $("#city").val(user_data.city);
-    $("#state").val(user_data.state);
     $("#pincode").val(user_data.pincode);
     $("#contact").val(user_data.phone);
     $("#email").val(user_data.email);
     $('#token').val(token);
     $('#lid').val(lam_id);
     $('#eid').val(edge_id);
+    if (user_data.city) {
+        $("#city").empty();
+        $("#city").append("<option value='"+user_data.city+"'>"+user_data.city+"</option>");
+    }
+
+    if (user_data.state) {
+        $("#state").empty();
+        $("#state").append("<option value='"+user_data.state+"'>"+user_data.state+"</option>");
+    }
 
     $(".submit_all_data").click(function(){
+        $.ajax({
+            url: base_url+'get_city_state',
+            type: "POST",
+            dataType: 'json',
+            crossDomain: true,
+            success: function(response){
+                console.log(response);
+            }
+        })
+
         var pin = /^\d{6}$/;
         var phoneno = /^\d{10}$/;
         var em_val = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!$("#name").val()) {
             myApp.alert("Please Enter Your Name", "ALERT");
-        } else if (!$("#city").val()) {
-            myApp.alert("Please Enter City", "ALERT");
         } else if (!$("#state").val()) {
             myApp.alert("Please Enter State", "ALERT");
+        } else if (!$("#city").val()) {
+            myApp.alert("Please Enter City", "ALERT");
         } else if (!$("#pincode").val()) {
             myApp.alert("Please Enter Pincode", "ALERT");
         } else if(!$('#pincode').val().match(pin)){ 
             myApp.alert("Please Enter Valid Pin", "ALERT");
-        } else if (!$("#contact").val()) {
+        } else if (!$("#contact").val().trim()) {
             myApp.alert("Please Enter Your Mobile Number", "ALERT");
-        } else if(!$('#contact').val().match(phoneno)){ 
+        } else if(!$('#contact').val().trim().match(phoneno)){ 
             myApp.alert("Please Enter Valid Mobile Number", "ALERT");
-        } else if (!$("#email").val()) {
+        } else if (!$("#email").val().trim()) {
             myApp.alert("Please Enter Your Email Id", "ALERT");
-        } else if(!$('#email').val().match(em_val)){  
+        } else if(!$('#email').val().trim().match(em_val)){  
             myApp.alert("Please Enter Valid Email Id", "ALERT");
         } else if ($("input[name='ch1']").serializeArray().length == 0) {
             myApp.alert("Please Select One of Quote / Samples", "ALERT");
         } else if ($("input[name='r1']").serializeArray().length == 0) {
             myApp.alert("Please Select One of your preferences", "ALERT");
         } else {                
-
 
             $.ajax({
                 url: base_url+'register_quote',
@@ -554,7 +644,7 @@ myApp.onPageInit('login', function (page) {
         if(data.msg.indexOf('SUCCESS')>=0) {
             myApp.alert('successfully logged in', 'Success');
             token = data.token;
-
+            Lockr.set('user_token', token);
             $('#loginForm').resetForm();
             mainView.router.loadPage(page_id);
         } else {
@@ -587,7 +677,8 @@ myApp.onPageInit('login', function (page) {
                     crossDomain: true,
                     data: {
                         fbID: fbData.id,
-                        fbName: fbData.name
+                        fbName: fbData.name,
+                        fbemail: fbData.email,
                     },
                 })
                 .done(function(response) {
@@ -628,64 +719,116 @@ myApp.onPageInit('register', function (page) {
     $('#idname').text('Register');
     $('#registerForm').attr('action', base_url+'register');
 
-    var MAHARASHTRA = [
-        {display: "Mumbai", value: "Mumbai" }, 
-        {display: "Pune", value: "Pune" }
-    ];
-        
-    var GUJRAT = [
-        {display: "Surat", value: "Surat" }, 
-        {display: "Ahmadabad", value: "Ahmadabad" }
-    ];
-        
-    var UP = [
-        {display: "Lucknow", value: "Lucknow" }, 
-        {display: "Agra", value: "Agra" }
-    ];
+    $.ajax({
+        url: base_url+'get_state',
+        type: "POST",
+        crossDomain: true,
+        dataType: 'JSON',
+        success: function(response){
+            $("#state").empty();
+            console.log(response);
+            var text = "<option value='SELECT'>SELECT STATE</option>"
+            $("#state").append(text);
+            $.each(response, function(index, value){
+                var text = "<option value='"+value.id+"'>"+value.state+"</option>";
+                $("#state").append(text);
+            })
+        }
+    })
 
     $("#state").change(function(){
-
-        var select = $("#state option:selected").val();
-        switch(select){
-            case "MAHARASHTRA":
-                city(MAHARASHTRA);
-            break;
-
-            case "GUJRAT":
-                city(GUJRAT);
-            break;
-
-            case "UP":
-                city(UP);
-            break;
-
-            default:
+        console.log($(this).val());
+        $.ajax({
+            url: base_url+'get_city',
+            type: "POST",
+            crossDomain: true,
+            dataType: 'JSON',
+            data: {id : $(this).val()},
+            success: function(response){
                 $("#city").empty();
-                $("#city").append("<option>--Select--</option>");
-            break;
-        }
-    });
+                console.log(response);
+                var text = "<option value='SELECT'>SELECT CITY</option>"
+                $("#city").append(text);
+                $.each(response, function(index, value){
+                    var text = "<option value='"+value.id+"'>"+value.city+"</option>";
+                    $("#city").append(text);
+                })
+            }
+        })        
+    })
 
-    function city(arr){
-        $("#city").empty();
-        $("#city").append("<option>--Select--</option>");
-        $(arr).each(function(i){
-            $("#city").append("<option value=\""+arr[i].value+"\">"+arr[i].display+"</option>")
-        });
-    }
-
-    $('#registerForm').ajaxForm(function(data) {
-
-        data = JSON.parse(data);
-
-        if (data.msg.indexOf("SUCCESS") >= 0) {
-            myApp.alert('Registered successfully.', 'Success');
-            token = data.token;
-            $('#registerForm').resetForm();
+    $(".regis-btn").click(function(){
+        var pin = /^\d{6}$/;
+        var phoneno = /^\d{10}$/;
+        var em_val = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        console.log("Register button triggerd");
+        if (!$("#first_name").val()) {
+            myApp.alert("Please Enter Your First Name", "ALERT");
+        } else if (!$("#last_name").val()) {
+            myApp.alert("Please Enter Your Last Name", "ALERT");
+        } else if (!$("#state").val()) {
+            myApp.alert("Please Select State", "ALERT");
+        } else if (!$("#city").val()) {
+            myApp.alert("Please Select City", "ALERT");
+        } else if (!$("#pincode").val()) {
+            myApp.alert("Please Enter Pincode", "ALERT");
+        } else if (!$("#pincode").val().match(pin)) {
+            myApp.alert("Please Enter valid Pincode", "ALERT");
+        } else if (!$("#phone").val()) {
+            myApp.alert("Please Enter Mobile No", "ALERT");
+        } else if (!$("#phone").val().match(phoneno)) {
+            myApp.alert("Please Enter Valid Mobile No", "ALERT");
+        } else if (!$("#email").val()) {
+            myApp.alert("Please Enter Your Email Id", "ALERT");
+        } else if(!$('#email').val().match(em_val)){ 
+            myApp.alert('Please Enter Your Valid Email Id', 'ALERT');
+        } else if (!$("#password").val()) {
+            myApp.alert("Please Enter Password", "ALERT");
+        } else if ($("#password_confirm").val() != $("#password").val()) {
+            myApp.alert("The Password does not match, Please Confirm Your Pasword", "ALERT");
         } else {
-            myApp.alert('please provide appropriate data.', 'Error');
+            console.log("Register User Called");
+            $.ajax({
+                url: base_url+'register_user',
+                type: "POST",
+                crossDomain: true,
+                dataType: 'JSON',
+                data: {
+                    first_name : $("#first_name").val(),
+                    last_name : $("#last_name").val(),
+                    state : $("#state").val(),
+                    city : $("#city").val(),
+                    pincode : $("#pincode").val(),
+                    phone : $("#phone").val(),
+                    email : $("#email").val(),
+                    password : $("#password").val(),
+                },
+                success: function(response){
+                    console.log(response);
+
+                    if (response.msg.indexOf("SUCCESS") >= 0) {
+                        myApp.alert('Registered successfully.', 'Success');
+                        token = response.token;
+                        user_data = response.user;
+                        mainView.router.loadPage(page_id);
+                    } else {
+                        myApp.alert('please provide appropriate data.', 'Error');
+                    }
+                }
+            })
         }
-    });
+    })
+
+    // $('#registerForm').ajaxForm(function(data) {
+    //     data = JSON.parse(data);
+    //     if (data.msg.indexOf("SUCCESS") >= 0) {
+    //         myApp.alert('Registered successfully.', 'Success');
+    //         token = data.token;
+    //         $('#registerForm').resetForm();
+    //     } else {
+    //         myApp.alert('please provide appropriate data.', 'Error');
+    //     }
+    // });
 });
 
 // Forgot Password
@@ -955,6 +1098,7 @@ myApp.onPageInit('saved', function(page){
             var html = "<p style='width: 100%; font-size: 1.2em; text-align: center;'>You do not Saved Laminates</p>";
             $("#saved_data").html(html);
         } else {
+            console.log(response.data);
             $.each(response.data, function(index, val){
                 html += '<div class="sel-block">'+
                             '<div class="sel-color" style="background-image: url('+img_url+val.image+');"></div>'+
@@ -962,7 +1106,7 @@ myApp.onPageInit('saved', function(page){
                             '<div class="sel-desc">'+val.description+'</div>'+
                             '<div class="sel-actions">'+
                             '<a class="shareBtn" href=""><span class="fa fa-share-alt"></span> Share</a>'+
-                            '<a style="float:right;" href=""><span class="fa fa-check-circle-o"></span> Get this</a>'+
+                            '<a style="float:right;" class="getLaminate" data-id="'+val.id+'" data-image="'+val.image+'"><span class="fa fa-check-circle-o"></span> Get this</a>'+
                             '</div>'+
                             '</div>';
             })
@@ -977,6 +1121,33 @@ myApp.onPageInit('saved', function(page){
                 $('.overlay-popup').fadeOut('fast');
                 $('.share-popup').fadeOut('fast');
             });
+
+            $(".getLaminate").click(function(){
+                lam_id = $(this).data("id");
+                lam_img = $(this).data("image");
+                mainView.router.loadPage('quote.html');
+
+                // $.ajax({
+                //     url: base_url+"get_laminate",
+                //     type: "POST",
+                //     crossDomain: true,
+                //     data: {lid: id, token: token, page_id: "quote.html"},
+                //     success: function(response){
+                //         var obj = response;
+                //         page_id = obj.page_id;
+                //         lam_id = obj.laminates_id;
+                //         lam_img = obj.image;
+                //         lam_content = obj.content;
+                //         lam_title = obj.title;
+                //         if (obj.msg == "LOGIN") {
+                //             mainView.router.loadPage('login.html');
+                //         } else {
+                //             user_data = obj.userdata;
+                //             mainView.router.loadPage('quote.html');
+                //         }
+                //     }
+                // })
+            })
         }
     })
     .fail(function(data) {
@@ -987,7 +1158,7 @@ myApp.onPageInit('saved', function(page){
 // Catalouge Selector
 myApp.onPageInit('catalogueselector2', function (page) {
     mainView.showNavbar();
-    $('#idname').text('Select Laminate');
+    $('#idname').text('Catalouge');
     document.addEventListener("backbutton", function () {
          mainView.router.loadPage('index.html');
     }, false);
@@ -1034,10 +1205,6 @@ myApp.onPageInit('catalogueselector2', function (page) {
         $('.modal-overlay-visible').css('opacity','0');
     });
 
-    $('.close-popup').click(function(){
-        $('.popup-about').fadeOut('slow');
-        $('.item-container img').removeClass('active-box');
-    });
     $('.btn').click(function(){
         $(this).css('display','block');
     });
@@ -1048,7 +1215,7 @@ myApp.onPageInit('catalogueselector2', function (page) {
         lam_title = $(this).data("title");
         lam_content = $(this).data("description");
         lam_id = $(this).data("id");
-        var html = '<img src="img/cross.png" class="close-popup cross-btn">'+
+        var html = '<img src="img/cross.png" class="cross-btn">'+
                     '<h1 class="item-title">'+lam_title+'</h1>'+
                     '<img src="'+lam_img+'" class="item-expanded-img" alt="">'+
                     '<p class="item-desc">'+lam_content+'</p>'+
@@ -1059,6 +1226,12 @@ myApp.onPageInit('catalogueselector2', function (page) {
                     '</div>';
         console.log(html);
         $("#laminatespop").html(html);
+
+        $('.cross-btn').click(function(){
+            $('.popup-about').fadeOut('fast');
+            // $('.item-container img').removeClass('active-box');
+        });
+
         $('.shareBtn').click(function(event) {
             console.log('share');
             $('.overlay-popup').fadeIn('slow');
@@ -1071,7 +1244,7 @@ myApp.onPageInit('catalogueselector2', function (page) {
                 url: base_url+"save_laminate",
                 type: "POST",
                 crossDomain: true,
-                data: {lid: id, token: token, page_id: "catalogue-selector.html"},
+                data: {lid: id, token: token, page_id: "catalogue-selector2.html"},
                 success: function(response){
                     var obj = response;
                     page_id = obj.page_id;
@@ -1159,6 +1332,20 @@ myApp.onPageInit('about', function (page) {
         $('.share-popup').fadeOut('fast');
     });
 });
+
+myApp.onPageInit('talktous', function(page){
+    mainView.showNavbar();
+    
+    document.addEventListener("backbutton", function () {
+        mainView.router.loadPage('index.html');
+    }, false);
+
+    $('#idname').text('Talk to Us');
+    $(".callus").click(function(){
+        window.open('tel:+180000888', '_system');
+    });
+    console.log('talktous inti');
+})
 
 // Backbutton Function
 // function gotoPrevPage(){
