@@ -44,6 +44,27 @@ var myApp = new Framework7({
     swipeout: false,
     cache: false,
 });
+/*
+* on page init check that user already logined or not
+*/
+token_pass = Lockr.get('user_token');
+// alert('Lockr toke: '+token_pass);
+token = token_pass;
+
+$.ajax({
+    url: base_url+'chk_logged_in',
+    dataType : 'JSON',
+    crossDomain: true,
+    type: 'POST',
+    data: {token: token},
+    success: function(response){
+        console.log(response);
+        if(response.username != undefined) {
+            $('#uname').text(response.username);
+            $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;"> Logout </a>');
+        }
+    }
+})
 
 openFB.init('1007458002645274', '', window.localStorage);
 
@@ -55,24 +76,6 @@ var mainView = myApp.addView('.view-main');
 // Index Page
 myApp.onPageInit('index', function(page){
     // mainView.hideNavbar();
-    token_pass = Lockr.get('user_token');
-    // alert('Lockr toke: '+token_pass);
-    token = token_pass;
-
-    $.ajax({
-        url: base_url+'chk_logged_in',
-        dataType : 'JSON',
-        crossDomain: true,
-        type: 'POST',
-        data: {token: token},
-        success: function(response){
-            console.log(response);
-            if(response.username != undefined) {
-                $('#uname').text(response.username);
-                $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;"> Logout </a>');
-            }
-        }
-    })
 
     document.addEventListener(
         "backbutton", 
