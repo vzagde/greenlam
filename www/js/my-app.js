@@ -56,7 +56,7 @@ var mainView = myApp.addView('.view-main');
 myApp.onPageInit('index', function(page){
     // mainView.hideNavbar();
     token_pass = Lockr.get('user_token');
-    alert('Lockr toke: '+token_pass);
+    // alert('Lockr toke: '+token_pass);
     token = token_pass;
 
     $.ajax({
@@ -64,8 +64,13 @@ myApp.onPageInit('index', function(page){
         dataType : 'JSON',
         crossDomain: true,
         type: 'POST',
+        data: {token: token},
         success: function(response){
             console.log(response);
+            if(response.username != undefined) {
+                $('#uname').text(response.username);
+                $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;"> Logout </a>');
+            }
         }
     })
 
@@ -675,7 +680,7 @@ myApp.onPageInit('login', function (page) {
             $('#uname').text(user_data.username);
             $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;"> Logout </a>');
             $('#loginForm').resetForm();
-            console.log('data: '+JSON.stringify(data));
+            // console.log('data: '+JSON.stringify(data));
             mainView.router.loadPage(page_id);
         } else {
             myApp.alert('please provide appropeiate data.', 'Error');
