@@ -922,10 +922,10 @@ html:not(.watch-active-state) .subnavbar a.link:active:before,
 }
 .navbar .center,
 .subnavbar .center {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   text-align: center;
-  margin: 0 16px;
+  margin: 0 -8px;
   position: relative;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1929,7 +1929,7 @@ html.pixel-ratio-3 .content-block-inner:after {
   position: relative;
 }
 .list-block ul:before {
-  content: '';
+ /* content: '';*/
   position: absolute;
   left: 0;
   top: 0;
@@ -1952,7 +1952,7 @@ html.pixel-ratio-3 .list-block ul:before {
   transform: scaleY(0.33);
 }
 .list-block ul:after {
-  content: '';
+  /*content: '';*/
   position: absolute;
   left: 0;
   bottom: 0;
@@ -2134,8 +2134,8 @@ html.pixel-ratio-3 .list-block ul:after {
   align-self: stretch;
 }
 .list-block .item-inner:after {
-  content: '';
-  position: absolute;
+  /*content: '';
+*/  position: absolute;
   left: 0;
   bottom: 0;
   right: auto;
@@ -2200,7 +2200,7 @@ html.pixel-ratio-3 .list-block .item-inner:after {
 }
 .list-block .item-link .item-inner {
   padding-right: 42px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%2060%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'm60%2061.5-38.25%2038.25-9.75-9.75%2029.25-28.5-29.25-28.5%209.75-9.75z'%20fill%3D'%23c7c7cc'%2F%3E%3C%2Fsvg%3E");
+ /* background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%2060%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'm60%2061.5-38.25%2038.25-9.75-9.75%2029.25-28.5-29.25-28.5%209.75-9.75z'%20fill%3D'%23c7c7cc'%2F%3E%3C%2Fsvg%3E");*/
   background-size: 10px 20px;
   background-repeat: no-repeat;
   background-position: 95% center;
@@ -2219,7 +2219,7 @@ html:not(.watch-active-state) .list-block .item-link:active,
 }
 .list-block .item-content {
   box-sizing: border-box;
-  padding-left: 16px;
+  padding-left: 43px;
   min-height: 48px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4297,6 +4297,7 @@ html.with-statusbar-overlay .popup.tablet-fullscreen {
   width: 260px;
   top: 0;
   height: 100%;
+  border-bottom: 7px solid #c1d700;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-transition-duration: 300ms;

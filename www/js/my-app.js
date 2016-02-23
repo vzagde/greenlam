@@ -4,24 +4,24 @@ var base_url = "http://casaestilo.in/greenlam_admin/index.php/json/";
 var img_url = "http://casaestilo.in/greenlam_admin/assets/uploads/files/";
 
 var token_pass = "";
-token_pass = Lockr.get('user_token');
-console.log(token_pass);
-if (token_pass != '') {
-    console.log(token_pass);
-    $.ajax({
-        url: base_url+'chk_logged_in',
-        dataType : 'JSON',
-        crossDomain: true,
-        type: 'POST',
-        data: {token: token_pass},
-        success: function(response){
-            var obj = response;
-            user_data = obj.user;
-            token = obj.token;
-            console.log(response);
-        }
-    })
-}
+// token_pass = Lockr.get('user_token');
+// console.log(token_pass);
+// if (token_pass != '') {
+//     console.log(token_pass);
+//     $.ajax({
+//         url: base_url+'chk_logged_in',
+//         dataType : 'JSON',
+//         crossDomain: true,
+//         type: 'POST',
+//         data: {token: token_pass},
+//         success: function(response){
+//             var obj = response;
+//             user_data = obj.user;
+//             token = obj.token;
+//             console.log(response);
+//         }
+//     })
+// }
 
 var page_id = 'index.html';
 var lam_id = '';
@@ -54,7 +54,10 @@ var mainView = myApp.addView('.view-main');
 
 // Index Page
 myApp.onPageInit('index', function(page){
-    mainView.hideNavbar();
+    // mainView.hideNavbar();
+    token_pass = Lockr.get('user_token');
+    alert('Lockr toke: '+token_pass);
+    token = token_pass;
 
     $.ajax({
         url: base_url+'chk_logged_in',
@@ -88,12 +91,17 @@ myApp.onPageInit('index', function(page){
     console.log('index init');
 })
 
+myApp.onPageInit('thankyou', function (page) {
+    // mainView.showNavbar();
+});
+
+
 
 // Pallet color selector
 myApp.onPageInit('colorselector', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+        mainView.router.back('index.html');
     }, false);
     $('#idname').text('Select Color');
 
@@ -139,11 +147,12 @@ myApp.onPageInit('colorselector', function (page) {
 
 // Matching laminate / Comlimentry laminates
 myApp.onPageInit('matchinglaminate2', function(page){
-    mainView.showNavbar();
+    // mainView.showNavbar();
     $('#idname').text('Select Laminate');
     $(".item-container").css("width", "auto !important");
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('colorselector.html');
+         // mainView.router.loadPage('colorselector.html');
+         mainView.router.back('index.html');
     }, false);
 
     var color = Lockr.get('color');
@@ -298,9 +307,10 @@ myApp.onPageInit('matchinglaminate2', function(page){
 // Select Edge Band
 myApp.onPageInit('selected-edgeband2', function(page){
     $('#idname').text('Select Edgeband');
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('catalogueselector2.html');
+         // mainView.router.loadPage('catalogueselector2.html');
+         mainView.router.back('index.html');
     }, false);
 
     $.ajax({
@@ -315,6 +325,7 @@ myApp.onPageInit('selected-edgeband2', function(page){
         $.each(data.result, function(index, val) {
             var text = '<div class="item-container" data-title="'+val.name+'" data-description="'+val.description+'" data-image="'+img_url+val.image+'" data-id="'+val.id+'">'+
                         '<img src="'+img_url+val.image+'" alt="">'+
+                        '<br><span>'+val.name+'</span>'+
                         '</div>';
             $('#selectedgeband').append(text);
         });
@@ -426,10 +437,11 @@ myApp.onPageInit('selected-edgeband2', function(page){
 
 //Quote Page
 myApp.onPageInit('quote', function(page){
-    mainView.showNavbar();
+    // mainView.showNavbar();
     console.log(lam_title);
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     var quote_type = '';
     var contact_via = '';
@@ -539,6 +551,19 @@ myApp.onPageInit('quote', function(page){
         $("#state").append("<option value='"+user_data.state+"'>"+user_data.state+"</option>");
     }
 
+
+    $('#pincode, #contact, #email').focusin(function (argument) {
+        $('.colorselector-wrapper').css({
+            marginTop: '-100%'
+        });
+    }); 
+
+    $('#pincode, #contact, #email').focusout(function (argument) {
+        $('.colorselector-wrapper').css({
+            marginTop: '0%'
+        });
+    }); 
+
     $(".submit_all_data").click(function(){
         $.ajax({
             url: base_url+'get_city_state',
@@ -612,9 +637,10 @@ myApp.onPageInit('quote', function(page){
 
 // Camera click View
 myApp.onPageInit('selectedcolor', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     $('#idname').text('Select Color');
     $('.clrSlctrLmnt').click(function(event) {
@@ -628,13 +654,13 @@ myApp.onPageInit('selectedcolor', function (page) {
 
 // Login Page
 myApp.onPageInit('login', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
 
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+        // mainView.router.loadPage('index.html');
+        mainView.router.back('index.html');
     }, false);
 
-    $('#idname').text('Login');
     $('#loginForm').attr('action', base_url+'login');
 
     $('#loginForm').ajaxForm(function(data) {
@@ -645,12 +671,29 @@ myApp.onPageInit('login', function (page) {
             myApp.alert('successfully logged in', 'Success');
             token = data.token;
             Lockr.set('user_token', token);
+            // console.log('login: '+JSON.stringify(data));
+            $('#uname').text(user_data.username);
+            $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;"> Logout </a>');
             $('#loginForm').resetForm();
+            console.log('data: '+JSON.stringify(data));
             mainView.router.loadPage(page_id);
         } else {
             myApp.alert('please provide appropeiate data.', 'Error');
         }
     });
+
+
+    $('.input-rounded').focusin(function (argument) {
+        $('.spacer').css({
+            marginTop: '-30%'
+        });
+    }); 
+
+    $('.input-rounded').focusout(function (argument) {
+        $('.spacer').css({
+            marginTop: '0%'
+        });
+    }); 
 
     
     $(".login-btn").click(function(){
@@ -712,9 +755,10 @@ myApp.onPageInit('login', function (page) {
 
 // Register Page
 myApp.onPageInit('register', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     $('#idname').text('Register');
     $('#registerForm').attr('action', base_url+'register');
@@ -756,6 +800,18 @@ myApp.onPageInit('register', function (page) {
             }
         })        
     })
+
+    $('#pincode, #phone, #email, #password_confirm, #password').focusin(function (argument) {
+        $('.register-wrapper').css({
+            marginTop: '-70%'
+        });
+    }); 
+
+    $('#pincode, #phone, #email, #password_confirm, #password').focusout(function (argument) {
+        $('.register-wrapper').css({
+            marginTop: '0%'
+        });
+    }); 
 
     $(".regis-btn").click(function(){
         var pin = /^\d{6}$/;
@@ -833,9 +889,10 @@ myApp.onPageInit('register', function (page) {
 
 // Forgot Password
 myApp.onPageInit('forgotpw', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     $('#idname').text('Forgot Password');
 
@@ -867,9 +924,10 @@ myApp.onPageInit('forgotpw', function (page) {
 
 // Offers Page
 myApp.onPageInit('offers', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     $('#idname').text('Offers');
     $.ajax({
@@ -935,9 +993,10 @@ myApp.onPageInit('offers', function (page) {
 
 // FAQ's Page
 myApp.onPageInit('faqs', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     $('#idname').text('FAQ');
 
@@ -984,9 +1043,10 @@ myApp.onPageInit('faqs', function (page) {
 //Feed Back Page
 myApp.onPageInit('feedback', function (page) {
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
-    mainView.showNavbar();
+    // mainView.showNavbar();
     $('#idname').text('Feedback');
 
     $('#feedback').attr('action', base_url+'feedback');
@@ -1013,8 +1073,9 @@ myApp.onPageInit('feedback', function (page) {
                         $("#name_feedback").val('');
                         $("#email_feedback").val('')
 
-                        $('.form-wrapper').hide();
-                        $('.thnkFeed').show();
+                        // $('.form-wrapper').hide();
+                        // $('.thnkFeed').show();
+                        mainView.router.loadPage('thankyou.html');
                     }
                 }
             })
@@ -1024,9 +1085,10 @@ myApp.onPageInit('feedback', function (page) {
 
 // My Selection Laminates Page
 myApp.onPageInit('myselections', function(page){
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     $('#idname').text('My Selections');
     $.ajax({
@@ -1078,9 +1140,10 @@ myApp.onPageInit('myselections', function(page){
 
 // Saved Laminates Page
 myApp.onPageInit('saved', function(page){
-    mainView.showNavbar();
+    // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     $('#idname').text('Saved');
 
@@ -1157,10 +1220,11 @@ myApp.onPageInit('saved', function(page){
 
 // Catalouge Selector
 myApp.onPageInit('catalogueselector2', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
     $('#idname').text('Catalouge');
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
     var text = '';
     $.ajax({
@@ -1311,10 +1375,11 @@ myApp.onPageInit('catalogueselector2', function (page) {
 
 // About Page
 myApp.onPageInit('about', function (page) {
-    mainView.showNavbar();
+    // mainView.showNavbar();
 
     document.addEventListener("backbutton", function () {
-         mainView.router.loadPage('index.html');
+         // mainView.router.loadPage('index.html');
+         mainView.router.back('index.html');
     }, false);
 
     $('#idname').text('About Us');
@@ -1334,10 +1399,11 @@ myApp.onPageInit('about', function (page) {
 });
 
 myApp.onPageInit('talktous', function(page){
-    mainView.showNavbar();
+    // mainView.showNavbar();
     
     document.addEventListener("backbutton", function () {
-        mainView.router.loadPage('index.html');
+        // mainView.router.loadPage('index.html');
+        mainView.router.back('index.html');
     }, false);
 
     $('#idname').text('Talk to Us');
@@ -1364,4 +1430,34 @@ function rgbToHex(color) {
       return ("0" + parseInt(x).toString(16)).slice(-2);
     }
     return     "#" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
+}
+
+function logout () {
+    console.log('logout');
+    $.ajax({
+        url: base_url+'logout',
+        type: 'POST',
+        data: {token: token},
+    })
+    .done(function(data) {
+        console.log("success: "+JSON.stringify(data));
+        $('#uname').text('');
+        var profileLink = '<a href="login.html" class="item-link close-panel" style="color:#000 !important;" > Login </a>' +
+        ' / ' +
+        '<a href="register.html" class="item-link close-panel" style="color:#000 !important;"> Signup </a>';
+        $('#profileLink').html(profileLink);
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+    
+}
+
+function sw () {
+    console.log('start');
+    window.location.href = 'whatsapp://send?text=This is the text that I wanna share.'; 
+    console.log('end');
 }

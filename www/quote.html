@@ -1,10 +1,17 @@
-<div class="pages">
+<!-- <div class="pages"> -->
     <!-- Page, data-page contains page name-->
     <div data-page="quote" class="page">
+         <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left"><a href="index.html" class="back link icon-only"><i style="width: 36px" class="icon icon-prev"></i></a></div>
+              <div class="center">Select Edgeband</div>
+              <div class="right" style="height:100%;"><img style="height: 50px;position: fixed;right: 20px;top: 6px;" src="img/peacock.png"></div>
+            </div>
+        </div>
+
         <!-- Scrollable page content-->
         <div class="page-content">
-
-            <style>
+                   <style>
                 .loader {
                     position: absolute;
                     top: 40%;
@@ -101,14 +108,10 @@
                 <p id="lamtitle" style="text-align: center;font-size: 1.2em; font-weight:bold;"></p>
                 <div class="selected-color color_url" style=""></div>
                 <br>
-                <div class="selected-color edge_url" style=""></div>
-
+                <!-- <div class="selected-color edge_url" style=""></div>
+ -->
                 <div class="color-boxes-wrapper frm" style="overflow-y: scroll">
                     <p id="lamcontent">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <hr/>
-                    <input type="checkbox" name="ch1" id="ch1" value="Get Quote" style="margin-top: 6%;display:inline-block;">Get Quote
-                    <input type="checkbox" name="ch2" id="ch2" value="Get Samples" style="margin-top: 6%;display:inline-block;">Get Samples
-                    <hr/>
                     <input type="text" name="name" id="name" class="textbx" placeholder="Name">
 <!--                     <input type="text" name="state" id="state" class="textbx" placeholder="State"> -->
                     <select class="textbx" name="state" required id="state" style="width:85% !important;">
@@ -119,11 +122,25 @@
                     </select>
                     <!-- <input type="text" name="city" id="city" class="textbx" placeholder="City"> -->
                     <input type="text" name="pincode" id="pincode" class="textbx" placeholder="Pincode">
+                     <select class="textbx" name="city" required id="visitor" style="width:85% !important;">
+                        <option value='Type Of Visitor'>Type Of Visitor</option>
+                        <option value='Architect'>Architect</option>
+                        <option value='Contractor'>Contractor</option>
+                        <option value='Dealer/Distributor'>Dealer/Distributor</option>
+                        <option value='OEM'>OEM</option>
+                        <option value='Vendor'>Vendor</option>
+                        <option value='Home Owner'>Home Owner</option>
+                        <option value='Other'>Other</option>
+                    </select>
+
                     <input type="number" maxlength="10" name="contact" id="contact" class="textbx" placeholder="Contact No.">
                     <input type="email" name="email" id="email" class="textbx" placeholder="Email">
+                    <hr/>
+                    <input type="checkbox" name="ch1" id="ch1" value="Get Quote" style="margin-top: 6%;display:inline-block;">Get Quote
+                    <input type="checkbox" name="ch2" id="ch2" value="Get Samples" style="margin-top: 6%;display:inline-block;">Get Samples
                     <p style="text-align: center !important;">I would prefer to be contacted via </p>
                     <input type="radio" name="r1" id="r1" value="phone" style="display:inline-block;">Phone
-                    <input type="radio" name="r2" id="r2" value="email" style="display:inline-block;margin-bottom:10%;">Email
+                    <input type="radio" name="r1" id="r2" value="email" style="display:inline-block;margin-bottom:10%;">Email
                    
 
                     <input type="hidden" name="lid" id="lid" value="">
@@ -132,11 +149,11 @@
                     <!-- </form> -->
 
                 </div>
-                 <button type="SUBMIT" class="button button-big button-raised submit_all_data" style="width: 100%;color: #fff;background: #1245a3;position:absolute;left: 0%;">Done</button>
+                 <button type="SUBMIT" class="button button-big button-raised submit_all_data" style="width: 100%;color: #fff;background: #1245a3;position:fixed;bottom:0;left: 0%;text-transform: capitalize;">Done</button>
 
             </div>
 
 
         </div>
     </div>
-</div>
+<!-- </div> -->

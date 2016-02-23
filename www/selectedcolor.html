@@ -1,6 +1,13 @@
-<div class="pages">
-    <!-- Page, data-page contains page name-->
+<!-- <div class="pages">
+ -->    <!-- Page, data-page contains page name-->
     <div data-page="selectedcolor" class="page">
+            <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left"><a href="index.html" class="back link icon-only"><i style="width: 36px" class="icon icon-prev"></i></a></div>
+              <div class="center">Select Color</div>
+              <div class="right" style="height:100%;"><img style="height: 50px;position: fixed;right: 20px;top: 6px;" src="img/peacock.png"></div>
+            </div>
+        </div>
         <!-- Scrollable page content-->
         <div class="page-content">
 
@@ -57,6 +64,7 @@
                     background-repeat: no-repeat;
                     display: none;
                 }
+                .bt{text-transform: capitalize;}
             </style>
             <div class="loader-bg"></div>
             <div class="loader"><span class="preloader"></span></div>
@@ -65,10 +73,11 @@
                 <div class="selected-color" style="background: ;"></div>
                 <img id="scream" src="img/picker-icon.png" class="selectcolor-pickr pickr">
                 <div class="color-boxes-wrapper">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" id="cameraImg" style=" height: 300px;">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" id="cameraImg" style=" height: 300px; width:90%;">
                 </div>
             </div>
-            <a href="#" class="button button-big button-raised clrSlctrLmnt" style="width: 100%;color: #fff;background: #1245a3;position: absolute;bottom: 0px;">Proceed to Select Laminate</a>
+              <a href="#" class="button button-big button-raised clrSlctrLmnt bt" style="width: 100%;color: #fff;background: #1245a3;position: fixed;bottom: 0px;">Proceed to Select Laminate</a>
+
         </div>
-    </div>
-</div>
+          </div>
+<!-- </div> -->
