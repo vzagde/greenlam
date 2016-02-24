@@ -759,6 +759,8 @@ myApp.onPageInit('login', function (page) {
                         myApp.alert('successfully logged in', 'Success');
                         token = obj.token;
                         console.log('fbToken: '+token);
+                        $('#uname').text(user_data.username);
+                        $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;padding-right: 36px;"> Logout </a>');
                         // Lockr.set('token', data.token);
                         $('#loginForm').resetForm();
                         mainView.router.loadPage(page_id);
