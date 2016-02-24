@@ -1,5 +1,12 @@
-<div class="pages">
+<!-- <div class="pages"> -->
     <div data-page="catalogueselector2" class="page">
+        <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+              <div class="center">Catelogue</div>
+              <div class="right" style="height:100%;"><img style="height: 50px;position: fixed;right: 20px;top: 6px;" src="img/peacock.png"></div>
+            </div>
+        </div>
         <div class="page-content">
             <style>
                 .main-container {
@@ -62,13 +69,15 @@
                 .item-row {
                     text-align: center;
                     width:90%;
-                    margin: 0 auto;
+                    margin: 40px auto;
+                    height:450px;
+                    overflow-y:scroll;
                 }
                 
                 .item-container {
                     display: inline-block;
                     background: none;
-                    padding:2% !important;
+                    padding:1% !important;
                 }
                 
                 .item-container.active {
@@ -114,11 +123,14 @@
                 
                 .btn {
                     width: 100%;
-                    color: #fff;
+                    color: #fff !important;
                     background: #1245a3;
                     position: fixed !important;
                     bottom: 0 !important;
                     z-index: 9990 !important;
+                    text-transform: capitalize;
+                    font-weight:bold;
+                    border-bottom: 8px solid #bed62f;
                 }
                 
                 .active-box {
@@ -127,7 +139,8 @@
                 
                 .content-block {
                     padding: 0px!important;
-                }
+                    /*margin:0px 0px !important;
+*/                }
                 
                 .loader {
                     position: absolute;
@@ -164,7 +177,7 @@
 					    width: 92%;
 					    height: auto;
 					    right: 0;
-					    margin: 15% auto;
+					    margin: 0% auto;
                 }
                 
                 .popup-title {
@@ -175,7 +188,7 @@
                 }
                 
                 .popup-content {
-                    margin-top: 50px;
+                    margin-top: 14px;
                     text-align: center;
                 }
                 
@@ -208,19 +221,24 @@
                 </div>
                 <center>
                     <div class="popup-content">
-                        <a href="">
-                            <img src="img/gmail-icon.png">
-                            <p>Gmail</p>
-                        </a>
-<!--                         <a href="">
-                            <img src="img/facebook-icon.png">
-                            <p>Facebook</p>
-                        </a> -->
-                        <a href="">
+                        <a style="display:block;" onclick="sw()" href="">
                             <img src="img/whatsaap-icon.png">
                             <p>Whatsapp</p>
                         </a>
-                        <a href="">
+
+                        <a style="display:block;" onclick="window.open('mailto:?&body=hello%20world..!', '_system')"   href="">
+                            <img src="img/gmail-icon.png">
+                            <p>Gmail</p>
+                        </a>
+                        <a style="display:block;" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system')" href="">
+                            <img src="img/facebook-icon.png">
+                            <p>Facebook</p>
+                        </a>
+                        <a style="display:block;" onclick="window.open('whatsapp://send?text=HelloWorld', '_system')" href="">
+                            <img src="img/whatsaap-icon.png">
+                            <p>Whatsapp</p>
+                        </a>
+                        <a style="display:block;" onclick="window.open('sms:?body=Hello my friend', '_system')"  href="">
                             <img src="img/message-icon.png">
                             <p>Message</p>
                         </a>
@@ -241,4 +259,4 @@
         </div>
         <button href="#" class="btn button button-big button-raised proceed-to-edgband">Proceed to Select Edgeband</button>
     </div>
-</div>
+<!-- </div> -->

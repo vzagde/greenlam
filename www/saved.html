@@ -1,6 +1,13 @@
-<div class="pages">
-    <!-- Page, data-page contains page name-->
+<!-- <div class="pages">
+ -->    <!-- Page, data-page contains page name-->
     <div data-page="saved" class="page">
+        <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center">Saved</div>
+                  <div class="right" style="height:100%;"><img style="height: 50px;position: fixed;right: 20px;top: 6px;" src="img/peacock.png"></div>
+                </div>
+        </div>
         <!-- Scrollable page content-->
         <div class="page-content">
 
@@ -17,6 +24,7 @@
                     position:absolute !important;
                     right:10% !important;
                     height:22px !important;
+                    top:3%;
                 }
 
                 
@@ -84,16 +92,17 @@
 
             <style type="text/css">
                 .share-popup {
-                    background-color: #ffffff;
-                    text-align: center;
-                    margin-top: 30px;
-                    display: none;
-                    border-bottom: 6px solid #cbdb3c;
-                    position: fixed;
-                    z-index: 99999 !important;
-                    left: 23px;
-                    width: 85%;
-                    height: 500px;
+                        background-color: #ffffff;
+                        text-align: center;
+                        display: none;
+                        border-bottom: 6px solid #cbdb3c;
+                        position: fixed;
+                        z-index: 99999 !important;
+                        left: 0;
+                        width: 92%;
+                        height: auto;
+                        right: 0;
+                        margin: 7% auto;
                 }
                 
                 .popup-title {
@@ -104,7 +113,7 @@
                 }
                 
                 .popup-content {
-                    margin-top: 50px;
+                    margin-top: 14px;
                     text-align: center;
                 }
                 
@@ -134,20 +143,20 @@
                     <img src="img/sharevia-icon.png">
                 </div>
                 <center>
-                    <div class="popup-content">
-                        <a href="">
+                      <div class="popup-content">
+                        <a style="display:block;" onclick="window.open('mailto:?&body=hello%20world..!', '_system')"   href="">
                             <img src="img/gmail-icon.png">
                             <p>Gmail</p>
                         </a>
-<!--                         <a href="">
+                        <a style="display:block;" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system');" href="">
                             <img src="img/facebook-icon.png">
                             <p>Facebook</p>
-                        </a> -->
-                        <a href="">
+                        </a>
+                        <a style="display:block;" onclick="window.open('whatsapp://send?text=Hello%20World!', '_system')" href="">
                             <img src="img/whatsaap-icon.png">
                             <p>Whatsapp</p>
                         </a>
-                        <a href="">
+                        <a style="display:block;" onclick="window.open('sms:?body=Hello my friend', '_system')"  href="">
                             <img src="img/message-icon.png">
                             <p>Message</p>
                         </a>
@@ -162,4 +171,4 @@
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->

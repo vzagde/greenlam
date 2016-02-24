@@ -1,6 +1,13 @@
-<div class="pages">
-    <!-- Page, data-page contains page name-->
+<!-- <div class="pages">
+ -->    <!-- Page, data-page contains page name-->
     <div data-page="register" class="page">
+        <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center">Register</div>
+                  <div class="right" style="height:100%;"><img style="height: 50px;position: fixed;right: 20px;top: 6px;" src="img/peacock.png"></div>
+                </div>
+        </div>
         <!-- Scrollable page content-->
         <div class="page-content">
 
@@ -96,41 +103,28 @@
                 </div>
 
 
-                <div class="reg-register-wrapper">
-                    <form class="frm" id="registerForm" method="POST">
-
-                        <input type="text" required name="first_name" id="" class="textbx" placeholder="Name">
-                        <input type="hidden" name="last_name" value="_">
-                        <select name="state" required id="state" class="textbx" style="width:85%!important;background-color:none!important;">
-              <option>States</option>
-              <option value="MAHARASHTRA">MAHARASHTRA</option>
-              <option value="GUJRAT">GUJRAT</option>
-              <option value="UP">U.P.</option>
-            </select>
-
-                        <select name="city" required id="city" class="textbx" style="width:85%!important;background-color:none!important;">
-              <option value="">City/Town</option>
-            </select>
-
-                        <input type="text" required name="pincode" id="" class="textbx" placeholder="Pincode">
-
-                        <input type="text" required name="phone" id="" class="textbx" placeholder="Contact No.">
-
-                        <input type="email" required name="email" id="" class="textbx" placeholder="Email ID">
-
-                        <input type="password" required name="password" id="" class="textbx" placeholder="password">
-
-                        <input type="password" required name="password_confirm" id="" class="textbx" placeholder="confirm password">
-
-                        <button type="submit" class="button button-big button-raised regis-btn" style="width: 100%;color: #fff;background: #1245a3;position: absolute;margin-top:0%;">Done</a>
-
-            </form>
-
+                <div class="reg-register-wrapper frm" style="overflow-y: scroll">
+                    <input type="text" required name="first_name" id="first_name" class="textbx" placeholder="Name">
+                    <input type="hidden" name="last_name" id="last_name" value="_">
+                    <select name="state" required id="state" class="textbx" style="width:85%!important;">
+                      <option value='SELECT'>SELECT STATE</option>
+                    </select>
+                    <select name="city" required id="city" class="textbx" style="width:85%!important;">
+                        <option value='SELECT'>SELECT CITY</option>
+                    </select>
+                    <input type="text" required name="pincode" id="pincode" class="textbx" placeholder="Pincode">
+                    <input type="number" required maxlength="10" name="phone" id="phone" class="textbx" placeholder="Contact No.">
+                    <input type="email" required name="email" id="email" class="textbx" placeholder="Email ID">
+                    <input type="password" required name="password" id="password" class="textbx" placeholder="password">
+                    <input type="password" required name="password_confirm" id="password_confirm" class="textbx" placeholder="confirm password">
+                    
         </div>
         
       </div>
+      <button type="submit" class="button button-big button-raised regis-btn" style="width: 100%;color: #fff;background: #1245a3;position: absolute;margin-top:0%;">Done</button>
+
       
 
       </div>
   </div>
-</div>
+<!-- </div> -->

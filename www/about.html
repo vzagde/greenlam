@@ -1,21 +1,29 @@
-<div class="pages navbar-fixed">
+<!-- <div class="pages navbar-fixed"> -->
     <!-- Page, data-page contains page name-->
     <div data-page="about" class="page">
-    
+            <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="left"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+                  <div class="center">About Us</div>
+                  <div class="right" style="height:100%;"><img style="height: 50px;position: fixed;right: 20px;top: 6px;" src="img/peacock.png"></div>
+                </div>
+        </div>
+
         <!-- Scrollable page content-->
         <div class="page-content">
             <style type="text/css">
                 .share-popup {
-                    background-color: #ffffff;
-                    text-align: center;
-                    margin-top: 30px;
-                    display: none;
-                    border-bottom: 6px solid #cbdb3c;
-                    position: fixed;
-                    z-index: 99999 !important;
-                    left: 23px;
-                    width: 85%;
-                    height: 500px;
+                        background-color: #ffffff;
+                        text-align: center;
+                        display: none;
+                        border-bottom: 6px solid #cbdb3c;
+                        position: fixed;
+                        z-index: 99999 !important;
+                        left: 0;
+                        width: 92%;
+                        height: auto;
+                        right: 0;
+                        margin: 0% auto;
                 }
                 
                 .popup-title {
@@ -26,12 +34,12 @@
                 }
                 
                 .popup-content {
-                    margin-top: 50px;
+                    margin-top: 14px;
                     text-align: center;
                 }
                 
                 .popup-content img {
-                    height: 40px;
+                    height: 45px;
                 }
                 
                 .popup-title img {
@@ -87,20 +95,20 @@
                     <img src="img/sharevia-icon.png">
                 </div>
                 <center>
-                    <div class="popup-content">
-                        <a onclick="window.open('mailto:?&body=hello%20world..!', '_system')" href="">
+                     <div class="popup-content">
+                        <a style="display:block;" onclick="window.open('mailto:?&body=hello%20world..!', '_system')"   href="">
                             <img src="img/gmail-icon.png">
                             <p>Gmail</p>
                         </a>
-<!--                         <a onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system');" href="">
+                        <a style="display:block;" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system');" href="">
                             <img src="img/facebook-icon.png">
                             <p>Facebook</p>
-                        </a> -->
-                        <a onclick="window.open('whatsapp://send?text=Hello%20World!', '_system')" href="">
+                        </a>
+                        <a style="display:block !important;" onclick="window.open('whatsapp://send?text=Hello%20World!', '_system')" launch-external="yes" href="">
                             <img src="img/whatsaap-icon.png">
                             <p>Whatsapp</p>
                         </a>
-                        <a onclick="window.open('sms:?body=Hello my friend', '_system')" href="">
+                        <a style="display:block;" onclick="window.open('sms:?body=Hello my friend', '_system')"  href="">
                             <img src="img/message-icon.png">
                             <p>Message</p>
                         </a>
@@ -109,7 +117,7 @@
 
             </div>
 
-            <img src="img/logo-flat.png" class="landing-logo-unit log" style="width:40%;padding-top:20px;">
+            <img src="img/logo-flat.png" class="landing-logo-unit log" style="width:30%;padding-top:20px;">
             <br>
             <div class="tab-info" style="font-size: .8em;"> Version 1.0.0 | All rights reserved | 2016 </div>
             <div class="hr-line"></div>
@@ -120,13 +128,13 @@
             <div class="about-bottom">
                 <span class="shareBtn"><img src="img/share.png"><p>Share App</p></span>
 
-                <a onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system');">share via fb </a> <br><br>
+                <!-- <a onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=google.com', '_system');">share via fb </a> <br><br>
 
                 <a onclick="window.open('whatsapp://send?text=Hello%20World!', '_system')" href="" data-action="share/whatsapp/share">Share via Whatsapp</a> <br><br>
 
                 <a onclick="window.open('mailto:?&body=hello%20world..!', '_system')" href="">share via Email</a> <br><br>
-
+ -->
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->
