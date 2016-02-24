@@ -320,8 +320,62 @@
 .regis-btn{
 	margin-top:17%!important;
 }
+
 }
 
+.selectcolor-pickr {
+    position: absolute;
+    /*right: 14%;*/
+    height: 25px;
+    z-index: 100000;
+    /*top: 23%;*/
+}
+
+@media (min-width:350px) and (max-width:369px){
+.selectcolor-pickr {
+    position: absolute !important;
+    /*right: 14% !important;*/
+    height: 25px !important;
+    /*top: 21%;*/
+}
+}
+@media (min-width:320px) and (max-width:349px){
+.selectcolor-pickr {
+    position: absolute !important;
+    /*right: 14% !important;*/
+    height: 30px !important;
+    /*top: 22%;*/
+}
+}
+
+@media (min-width:370px) and (max-width:379px){
+.selectcolor-pickr {
+    position: absolute !important;
+    /*right: 14% !important;*/
+    height: 30px !important;
+    /*top: 20%;*/
+}
+}
+@media (min-width:380px) and (max-width:480px){
+.selectcolor-pickr {
+    position: absolute !important;
+    /*right: 14% !important;*/
+    height: 30px !important;
+    /*top: 17%;*/
+}
+
+@media (min-width:480px) and (max-width:550px){
+.selectcolor-pickr {
+    position: absolute !important;
+    /*right: 14% !important;*/
+    height: 25px !important;
+    /*top: 16%;*/
+}
+}
+
+
+
+/**/
 @media (min-width:350px) and (max-width:369px){
 .pickr {
     position: absolute !important;
@@ -344,8 +398,8 @@
 .pickr {
     position: absolute !important;
     right: 14% !important;
-    height: 25px !important;
-    top: 23% !important;
+    height: 30px !important;
+    top: 22% !important;
 }
 .og-details a {
     margin: 30px 0px 0 !important;
@@ -353,13 +407,20 @@
 }
 .pop-about{margin-top:-55% !important;}
 }
-
-@media (min-width:370px) and (max-width:480px){
+@media (min-width:370px) and (max-width:379px){
 .pickr {
     position: absolute !important;
     right: 14% !important;
-    height: 25px !important;
-    top: 21% !important;
+    height: 30px !important;
+    top: 20% !important;
+}
+}
+@media (min-width:380px) and (max-width:480px){
+.pickr {
+    position: absolute !important;
+    right: 14% !important;
+    height: 30px !important;
+    top: 17% !important;
 }
 .og-details a {
     font-weight: bold !important;

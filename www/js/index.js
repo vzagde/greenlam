@@ -123,15 +123,16 @@ function onSuccess(imageData) {
         // rgba(0,255,0,0.3)
         var clr =  'rgba(' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] + ',' + pixelData[3]/255 + ')' ;
         // alert(clr);
-        $(".pickr").css("left", event.offsetX);
-        $(".pickr").css("top", event.offsetY+180);
+        console.log(event.offsetX);
+        console.log(event.offsetY);
+        $("#scream").css("left", event.offsetX);
+        $("#scream").css("top", event.offsetY+150);
         $('.selected-color').css("background-color", clr );
 
         // var hslaClr = color2color( clr, 'hsla' ); // Returns "rgba(64,64,64,0.5)"
         // hslaClr = hslaClr.substr(0, 3) + 'a' + hslaClr.substr(3);
         // // alert(hslaClr);
         // $('.imgClrHSLA').css("background-color", hslaClr );
-
     });
 }
 

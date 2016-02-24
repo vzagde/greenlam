@@ -50,7 +50,7 @@ var myApp = new Framework7({
 token_pass = Lockr.get('user_token');
 // alert('Lockr toke: '+token_pass);
 token = token_pass;
-
+console.log('token: '+token);
 $.ajax({
     url: base_url+'chk_logged_in',
     dataType : 'JSON',
@@ -58,10 +58,12 @@ $.ajax({
     type: 'POST',
     data: {token: token},
     success: function(response){
-        console.log(response);
+        // console.log(response);
         if(response.username != undefined) {
             $('#uname').text(response.username);
-            $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;"> Logout </a>');
+            $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;padding-right: 36px;"> Logout </a>');
+            token = response.token;
+            console.log(token);
         }
     }
 })
@@ -314,7 +316,7 @@ myApp.onPageInit('matchinglaminate2', function(page){
 
 // Select Edge Band
 myApp.onPageInit('selected-edgeband2', function(page){
-    $('#idname').text('Select Edgeband');
+    // $('#idname').text('Select Edgeband');
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('catalogueselector2.html');
@@ -355,6 +357,7 @@ myApp.onPageInit('selected-edgeband2', function(page){
         myApp.popup('.popup-about');
         $('.popup-overlay').removeClass('modal-overlay-visible');
         $('.modal-overlay-visible').css('opacity','0');
+        edge_img = $(this).attr('src');
     });
 
     $(".item-container").click(function(){
@@ -451,6 +454,7 @@ myApp.onPageInit('quote', function(page){
          // mainView.router.loadPage('index.html');
          mainView.router.back('index.html');
     }, false);
+
     var quote_type = '';
     var contact_via = '';
 
@@ -536,7 +540,7 @@ myApp.onPageInit('quote', function(page){
     $(".color_url").css("background-image", "url('"+img_url+lam_img+"')");
     console.log(edge_img);
     if (edge_img) {
-        $(".edge_url").css("background-image", "url('"+edge_img+"')");
+        $(".edge_url").css("background-image", "url('"+img_url+edge_img+"')");
     }
     console.log(lam_title);
 
@@ -681,7 +685,7 @@ myApp.onPageInit('login', function (page) {
             Lockr.set('user_token', token);
             // console.log('login: '+JSON.stringify(data));
             $('#uname').text(user_data.username);
-            $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;"> Logout </a>');
+            $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;padding-right: 36px;"> Logout </a>');
             $('#loginForm').resetForm();
             // console.log('data: '+JSON.stringify(data));
             mainView.router.loadPage(page_id);
@@ -811,7 +815,7 @@ myApp.onPageInit('register', function (page) {
 
     $('#pincode, #phone, #email, #password_confirm, #password').focusin(function (argument) {
         $('.register-wrapper').css({
-            marginTop: '-70%'
+            marginTop: '-50%'
         });
     }); 
 
@@ -868,12 +872,16 @@ myApp.onPageInit('register', function (page) {
                     password : $("#password").val(),
                 },
                 success: function(response){
-                    console.log(response);
-
-                    if (response.msg.indexOf("SUCCESS") >= 0) {
+                    console.log('response: '+JSON.stringify(response));
+                    if (response.msg == undefined) {
+                        console.log('already exist');
+                        myApp.alert('User already exist.', 'Error');
+                    } else if (response.msg.indexOf("SUCCESS") >= 0) {
                         myApp.alert('Registered successfully.', 'Success');
                         token = response.token;
                         user_data = response.user;
+                        $('#uname').text(user_data.username);
+                        $('#profileLink').html('<a href="" onclick="logout()" class="item-link close-panel" style="color:#000 !important;padding-right: 36px;"> Logout </a>');
                         mainView.router.loadPage(page_id);
                     } else {
                         myApp.alert('please provide appropriate data.', 'Error');
@@ -1440,8 +1448,10 @@ function rgbToHex(color) {
     return     "#" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
 }
 
-function logout () {
+function logout() {
     console.log('logout');
+    // user_token = Lockr.get('user_token');
+    console.log('token: '+token);
     $.ajax({
         url: base_url+'logout',
         type: 'POST',
@@ -1455,8 +1465,8 @@ function logout () {
         '<a href="register.html" class="item-link close-panel" style="color:#000 !important;"> Signup </a>';
         $('#profileLink').html(profileLink);
     })
-    .fail(function() {
-        console.log("error");
+    .fail(function(data) {
+        console.log("error: "+JSON.stringify(data));
     })
     .always(function() {
         console.log("complete");
