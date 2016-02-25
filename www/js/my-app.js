@@ -133,7 +133,7 @@ myApp.onPageInit('colorselector', function (page) {
 
         $('.color-box').click(function(event) {
             console.log('hiii');
-            $('.color-box').css('border','none');
+            $('.color-box').css('border','2px solid #fff');
             $(this).css('border','2px solid #c1d700');
             var t = $(this).data('color');
             $('.selected-color').css('background',t);
@@ -624,7 +624,7 @@ myApp.onPageInit('quote', function(page){
             myApp.alert("Please Enter Your Email Id", "ALERT");
         } else if(!$('#email').val().trim().match(em_val)){  
             myApp.alert("Please Enter Valid Email Id", "ALERT");
-        } else if ($("input[name='ch1']").serializeArray().length == 0) {
+        } else if ($("input[name='ch1']").serializeArray().length == 0 && $("input[name='ch2']").serializeArray().length == 0) {
             myApp.alert("Please Select One of Quote / Samples", "ALERT");
         } else if ($("input[name='r1']").serializeArray().length == 0) {
             myApp.alert("Please Select One of your preferences", "ALERT");
