@@ -137,7 +137,8 @@ function onSuccess(imageData) {
 }
 
 function onFail(message) {
-    alert('Failed because: ' + message);
+    // alert('Failed because: ' + message);
+    mainView.router.loadPage('index.html');
 }
 
 // openFB.init('1474734099449266', '', window.localStorage);

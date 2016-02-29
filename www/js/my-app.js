@@ -79,15 +79,22 @@ var mainView = myApp.addView('.view-main');
 myApp.onPageInit('index', function(page){
     // mainView.hideNavbar();
 
+    // document.addEventListener(
+    //     "backbutton", 
+    //     function () {
+    //         navigator.notification.confirm(
+    //            'Do you want to quit', 
+    //            onConfirmQuit, 
+    //            'QUIT TITLE', 
+    //            'OK,Cancel'  
+    //         );
+    //     }, 
+    //     false
+    // );
+
     document.addEventListener(
         "backbutton", 
         function () {
-            navigator.notification.confirm(
-               'Do you want to quit', 
-               onConfirmQuit, 
-               'QUIT TITLE', 
-               'OK,Cancel'  
-            );
         }, 
         false
     );
@@ -103,6 +110,9 @@ myApp.onPageInit('index', function(page){
 
 myApp.onPageInit('thankyou', function (page) {
     // mainView.showNavbar();
+    document.addEventListener("backbutton", function () {
+        mainView.router.back();
+    }, false);
 });
 
 
@@ -111,7 +121,7 @@ myApp.onPageInit('thankyou', function (page) {
 myApp.onPageInit('colorselector', function (page) {
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
-        mainView.router.back('index.html');
+        mainView.router.back();
     }, false);
     $('#idname').text('Select Color');
 
@@ -162,7 +172,7 @@ myApp.onPageInit('matchinglaminate2', function(page){
     $(".item-container").css("width", "auto !important");
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('colorselector.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
 
     var color = Lockr.get('color');
@@ -320,7 +330,7 @@ myApp.onPageInit('selected-edgeband2', function(page){
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('catalogueselector2.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
 
     $.ajax({
@@ -452,7 +462,7 @@ myApp.onPageInit('quote', function(page){
     console.log(lam_title);
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
 
     var quote_type = '';
@@ -668,7 +678,7 @@ myApp.onPageInit('selectedcolor', function (page) {
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     $('#idname').text('Select Color');
     $('.clrSlctrLmnt').click(function(event) {
@@ -686,7 +696,7 @@ myApp.onPageInit('login', function (page) {
 
     document.addEventListener("backbutton", function () {
         // mainView.router.loadPage('index.html');
-        mainView.router.back('index.html');
+        mainView.router.back();
     }, false);
 
     $('#loginForm').attr('action', base_url+'login');
@@ -788,7 +798,7 @@ myApp.onPageInit('register', function (page) {
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     $('#idname').text('Register');
     $('#registerForm').attr('action', base_url+'register');
@@ -832,15 +842,18 @@ myApp.onPageInit('register', function (page) {
     })
 
     $('#pincode, #phone, #email, #password_confirm, #password').focusin(function (argument) {
-        $('.register-wrapper').css({
+        $('.frm').css({
             marginTop: '-50%'
         });
+        // $('.button').css('marginTop', '50%');
+
     }); 
 
     $('#pincode, #phone, #email, #password_confirm, #password').focusout(function (argument) {
-        $('.register-wrapper').css({
+        $('.frm').css({
             marginTop: '0%'
         });
+        // $('.button').css('marginTop', '0%');
     }); 
 
     $(".regis-btn").click(function(){
@@ -926,7 +939,7 @@ myApp.onPageInit('forgotpw', function (page) {
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     $('#idname').text('Forgot Password');
 
@@ -961,7 +974,7 @@ myApp.onPageInit('offers', function (page) {
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     $('#idname').text('Offers');
     $.ajax({
@@ -1030,7 +1043,7 @@ myApp.onPageInit('faqs', function (page) {
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     $('#idname').text('FAQ');
 
@@ -1078,7 +1091,7 @@ myApp.onPageInit('faqs', function (page) {
 myApp.onPageInit('feedback', function (page) {
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     // mainView.showNavbar();
     $('#idname').text('Feedback');
@@ -1122,7 +1135,7 @@ myApp.onPageInit('myselections', function(page){
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     $('#idname').text('My Selections');
     $.ajax({
@@ -1177,7 +1190,7 @@ myApp.onPageInit('saved', function(page){
     // mainView.showNavbar();
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     $('#idname').text('Saved');
 
@@ -1258,7 +1271,7 @@ myApp.onPageInit('catalogueselector2', function (page) {
     $('#idname').text('Catalouge');
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
     var text = '';
     $.ajax({
@@ -1413,7 +1426,7 @@ myApp.onPageInit('about', function (page) {
 
     document.addEventListener("backbutton", function () {
          // mainView.router.loadPage('index.html');
-         mainView.router.back('index.html');
+         mainView.router.back();
     }, false);
 
     $('#idname').text('About Us');
@@ -1437,7 +1450,7 @@ myApp.onPageInit('talktous', function(page){
     
     document.addEventListener("backbutton", function () {
         // mainView.router.loadPage('index.html');
-        mainView.router.back('index.html');
+        mainView.router.back();
     }, false);
 
     $('#idname').text('Talk to Us');
@@ -1484,6 +1497,7 @@ function logout() {
         $('#profileLink').html(profileLink);
         token = 'nothing';
         Lockr.set('user_token', 'nothing');
+        mainView.router.loadPage('index.html');
     })
     .fail(function(data) {
         console.log("error: "+JSON.stringify(data));
@@ -1499,3 +1513,5 @@ function sw () {
     window.location.href = 'whatsapp://send?text=This is the text that I wanna share.'; 
     console.log('end');
 }
+
+
